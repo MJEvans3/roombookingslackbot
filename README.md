@@ -56,12 +56,16 @@ Example booking command:
    - Copy your Bot Token and App Token
 
 4. Configure the bot:
-   - Add your tokens in the `config/config.py` file:
-
-    ```python
-    SLACK_BOT_TOKEN = "your-bot-token"
-    SLACK_APP_TOKEN = "your-app-token"
-    ```
+   - Create your config file by copying the template:
+     ```bash
+     cp config/config_template.py config/config.py
+     ```
+   - Edit the new `config/config.py` file and replace the placeholder values with your tokens:
+     ```python
+     SLACK_BOT_TOKEN = "your-bot-token"  # Replace with your actual bot token
+     SLACK_APP_TOKEN = "your-app-token"  # Replace with your actual app token
+     ```
+   Note: Leave `config_template.py` unchanged. The copy you created (`config.py`) will be automatically ignored by git to protect your tokens.
 
 
 5. Run the bot:
