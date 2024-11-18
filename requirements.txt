@@ -1,0 +1,7 @@
+slack-sdk>=3.19.5
+python-dotenv>=0.19.2
+datetime
+typing
+json
+logging
+calendar
