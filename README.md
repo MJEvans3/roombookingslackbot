@@ -33,11 +33,16 @@ Example booking command:
 
 1. Clone the repository:
 
-git clone https://github.com/yourusername/floor10-room-booking.git
-cd floor10-room-booking
+    ```bash
+    git clone https://github.com/yourusername/floor10-room-booking.git
+    cd floor10-room-booking
+    ```
 
 2. Install required packages:
-pip install -r requirements.txt
+
+    ```bash
+    pip install -r requirements.txt
+    ```
 
 
 3. Set up your Slack App:
@@ -52,15 +57,23 @@ pip install -r requirements.txt
 
 4. Configure the bot:
    - Add your tokens in the `config/config.py` file:
-    - `SLACK_BOT_TOKEN = "your-bot-token"`
-    - `SLACK_APP_TOKEN = "your-app-token"`
+
+    ```python
+    SLACK_BOT_TOKEN = "your-bot-token"
+    SLACK_APP_TOKEN = "your-app-token"
+    ```
 
 
 5. Run the bot:
+
+    ```bash
     python main.py
+    ```
 
 
 ## Project Structure
+
+```
 floor10-room-booking/
 ├── bot/
 │ ├── message_handler.py
@@ -76,6 +89,9 @@ floor10-room-booking/
 ├── main.py
 ├── requirements.txt
 └── README.md
+```
+
+
 
 
 ## Dependencies

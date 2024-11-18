@@ -1,6 +1,3 @@
-# Configuration files with sensitive data
-config/config.py
-
 # Python
 __pycache__/
 *.py[cod]
