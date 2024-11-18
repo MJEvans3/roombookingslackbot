@@ -33,4 +33,4 @@ ENV/
 .idea/
 .vscode/
 *.swp
-*.swo
+*.swoconfig/config.py
