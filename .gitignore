@@ -1,5 +1,5 @@
 # Configuration files with sensitive data
-config/config_local.py
+config/config.py
 config/__pycache__/
 config/*.pyc
 
