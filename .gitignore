@@ -1,3 +1,8 @@
+# Configuration files with sensitive data
+config/config_local.py
+config/__pycache__/
+config/*.pyc
+
 # Python
 __pycache__/
 *.py[cod]
