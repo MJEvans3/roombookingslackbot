@@ -79,11 +79,13 @@ class SlackBot:
         try:
             channels = self.web_client.conversations_list()
             welcome_message = (
-                "Hello! I can help you book meeting rooms. Try these commands:\n"
-                "• `@floor10roombooking book a room`\n"
-                "• `@floor10roombooking list rooms`\n"
-                "• `@floor10roombooking list available rooms for eg. 21 August`\n"
-                "• `@floor10roombooking cancel booking`"
+                "Available commands:\n"
+                "• `@floor10roombooking book a room` - Start a new room booking\n"
+                "• `@floor10roombooking list rooms` - See all available rooms\n"
+                "• `@floor10roombooking list available rooms for [date]` - Check room availability\n"
+                "• `@floor10roombooking list my bookings` - View your active bookings\n"
+                "• `@floor10roombooking cancel booking` - Cancel your bookings\n\n"
+                "For more details about any command, just try it and I'll guide you through the process!"
             )
             
             for channel in channels["channels"]:

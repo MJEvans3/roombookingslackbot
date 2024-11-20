@@ -43,6 +43,8 @@ class MessageHandler:
             return self._handle_list_available(message)
         elif message.startswith('book '):
             return self._handle_booking_request(message, user_id)
+        elif message == 'list my bookings':
+            return self._handle_list_user_bookings(user_id)
         
         # If no command matches, return help message
         logging.debug(f"No command match found for message: '{message}'")
@@ -224,11 +226,13 @@ class MessageHandler:
     def _get_help_message(self) -> str:
         """Return help message with available commands."""
         return (
-            "Try these commands:\n"
-            "• `@floor10roombooking book a room`\n"
-            "• `@floor10roombooking list rooms`\n"
-            "• `@floor10roombooking list available rooms for eg. 21 August`\n"
-            "• `@floor10roombooking cancel booking`"
+            "Available commands:\n"
+            "• `@floor10roombooking book a room` - Start a new room booking\n"
+            "• `@floor10roombooking list rooms` - See all available rooms\n"
+            "• `@floor10roombooking list available rooms for [date]` - Check room availability\n"
+            "• `@floor10roombooking list my bookings` - View your active bookings\n"
+            "• `@floor10roombooking cancel booking` - Cancel your bookings\n\n"
+            "For more details about any command, just try it and I'll guide you through the process!"
         )
 
     def _handle_booking_cancellation(self, user_id: str, booking_numbers: List[int] = None, cancel_all: bool = False) -> str:
@@ -397,5 +401,22 @@ class MessageHandler:
         if not successful_bookings and not failed_bookings:
             return "No bookings were created. Please check the date range and frequency."
 
+        return "\n".join(response)
+
+    def _handle_list_user_bookings(self, user_id: str) -> str:
+        """Handle a request to list user's bookings."""
+        bookings = self.room_manager.get_user_bookings(user_id)
+        if not bookings:
+            return "You don't have any active bookings."
+        
+        response = ["Your active bookings:"]
+        for i, booking in enumerate(bookings, 1):
+            start_time = datetime.fromisoformat(booking['start_time'])
+            end_time = datetime.fromisoformat(booking['end_time'])
+            response.append(
+                f"{i}. {booking['room_name']} on {start_time.strftime('%B %d')} "
+                f"from {start_time.strftime('%I:%M %p')} to {end_time.strftime('%I:%M %p')} - "
+                f"{booking['event_name']}"
+            )
         return "\n".join(response)
     
