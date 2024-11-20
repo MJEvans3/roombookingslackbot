@@ -29,7 +29,8 @@ class MessageHandler:
             return (
                 "Please book a room using this format:\n"
                 "`@floor10roombooking book [room], [date], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
-                "Example: `@floor10roombooking book nest, tomorrow, 2pm, 2 hours, NWG NCF Customer Playback, client, John Smith`"
+                "Example: `@floor10roombooking book nest, tomorrow, 2pm, 2 hours, NWG NCF Customer Playback, client, John Smith`\n"
+                "Date formats accepted: 'today', 'tomorrow', '28th November', '22nd of November', '19/12', '19/12/2024'"
             )
         elif message == 'list rooms':
             return self._handle_list_rooms()
@@ -46,9 +47,9 @@ class MessageHandler:
         """Handle room booking requests."""
         # Extract all required fields
         room_match = re.search(r'book\s+(nest|treehouse|lighthouse|raven|hummingbird)', message)
-        date_match = re.search(r'(?:book\s+\w+,\s*)(today|tomorrow|\d{1,2}(?:st|nd|rd|th)?\s+[A-Za-z]+)', message)
+        date_match = re.search(r'(?:book\s+\w+,\s*)(\d{1,2}(?:st|nd|rd|th)?\s+(?:of\s+)?[A-Za-z]+|\d{1,2}/\d{1,2}(?:/\d{4})?|today|tomorrow)', message)
         time_match = re.search(r',\s*(\d{1,2}(?::\d{2})?(?:am|pm)|\d{2}:\d{2})', message)
-        duration_match = re.search(r',\s*(\d+)\s+(hour|minute)s?', message)
+        duration_match = re.search(r',\s*(\d+)\s+(hour|minute|min|m|minutes|mins|hours)s?', message)
         event_match = re.search(r',\s*([^,]+?)\s*,\s*(?:internal|client)', message)
         type_match = re.search(r',\s*(internal|client)\s*,', message)
         name_match = re.search(r',\s*(?:internal|client)\s*,\s*([^,]+)$', message)
@@ -58,19 +59,30 @@ class MessageHandler:
             return (
                 "Please book a room using this format:\n"
                 "`@floor10roombooking book [room], [date], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
-                "Example: `@floor10roombooking book nest, tomorrow, 2pm, 2 hours, NWG NCF Customer Playback, client, John Smith`"
+                "Example: `@floor10roombooking book nest, tomorrow, 2pm, 2 hours, NWG NCF Customer Playback, client, John Smith`\n"
+                "Date formats accepted: 'today', 'tomorrow', '28th November', '22nd of November', '19/12', '19/12/2024'"
             )
         
         # Extract values
         room_id = room_match.group(1).upper()
-        start_time = parse_date_time(date_match.group(1), time_match.group(1))
+        date_str = date_match.group(1)
+        time_str = time_match.group(1)
+        
+        # Parse the date and time
+        start_time = parse_date_time(date_str, time_str)
         if not start_time:
             return "I couldn't understand the date and time. Please try again."
             
-        # Parse duration
+        # Parse duration with support for minutes
         amount = int(duration_match.group(1))
-        unit = duration_match.group(2)
-        duration_minutes = amount * 60 if unit == 'hour' else amount
+        unit = duration_match.group(2).lower()
+        if unit in ['hour', 'hours']:
+            duration_minutes = amount * 60
+        elif unit in ['minute', 'minutes', 'min', 'mins', 'm']:
+            duration_minutes = amount
+            # Validate minute durations
+            if amount not in [15, 30, 45] and amount < 60:
+                return "For bookings less than 1 hour, please use 15, 30, or 45 minute intervals."
         
         # Get other details
         event_name = event_match.group(1).strip()
