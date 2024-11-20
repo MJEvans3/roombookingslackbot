@@ -450,3 +450,39 @@ class RoomManager:
         room.bookings.sort(key=lambda x: x['start_time'])
         
         return booking
+    
+    def book_recurring_meetings(self, room_id: str, start_date: datetime, end_date: datetime, 
+                              frequency: str, duration_minutes: int, event_name: str, 
+                              meeting_type: str, contact_name: str, user_id: str) -> Tuple[List[datetime], List[datetime]]:
+        """Book recurring meetings and return successful and failed booking dates."""
+        successful_bookings = []
+        failed_bookings = []
+        current_date = start_date
+
+        while current_date.date() <= end_date.date():
+            if self.check_room_availability(room_id, current_date, duration_minutes):
+                booking = self.book_room(
+                    room_id, current_date, duration_minutes,
+                    event_name, meeting_type, contact_name, user_id
+                )
+                if booking:
+                    successful_bookings.append(current_date)
+                else:
+                    failed_bookings.append(current_date)
+            else:
+                failed_bookings.append(current_date)
+
+            # Increment date based on frequency
+            if frequency == 'daily':
+                current_date += timedelta(days=1)
+            elif frequency == 'weekly':
+                current_date += timedelta(days=7)
+            elif frequency == 'biweekly':
+                current_date += timedelta(days=14)
+            elif frequency == 'monthly':
+                if current_date.month == 12:
+                    current_date = current_date.replace(year=current_date.year + 1, month=1)
+                else:
+                    current_date = current_date.replace(month=current_date.month + 1)
+
+        return successful_bookings, failed_bookings

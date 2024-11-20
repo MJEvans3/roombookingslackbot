@@ -27,11 +27,16 @@ class MessageHandler:
             return self._handle_cancellation_request(user_id)
         elif message == 'book a room':
             return (
-                "Please book a room using this format:\n"
-                "`@floor10roombooking book [room], [date], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
-                "Example: `@floor10roombooking book nest, tomorrow, 2pm, 2 hours, NWG NCF Customer Playback, client, John Smith`\n"
+                "Would you like to make a single or recurring booking?\n\n"
+                "• For a single booking, reply with: `@floor10roombooking book [room], [date], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n"
+                "• For a recurring booking, reply with: `@floor10roombooking book recurring [room], [start date], [end date], [frequency (daily/weekly/biweekly/monthly)], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
+                "Examples:\n"
+                "Single: `@floor10roombooking book nest, tomorrow, 2pm, 2 hours, NWG NCF Customer Playback, client, John Smith`\n"
+                "Recurring: `@floor10roombooking book recurring nest, 22nd November, 22nd December, weekly, 2pm, 2 hours, Team Sync, internal, John Smith`\n\n"
                 "Date formats accepted: 'today', 'tomorrow', '28th November', '22nd of November', '19/12', '19/12/2024'"
             )
+        elif message.startswith('book recurring '):
+            return self._handle_recurring_booking_request(message, user_id)
         elif message == 'list rooms':
             return self._handle_list_rooms()
         elif message.startswith('list available'):
@@ -270,5 +275,127 @@ class MessageHandler:
                 f"• {booking['room_name']} on {start_time.strftime('%B %d at %I:%M %p')} - {booking['event_name']}"
             )
         
+        return "\n".join(response)
+
+    def _handle_recurring_booking_request(self, message: str, user_id: str) -> str:
+        """Handle recurring room booking requests."""
+        # Extract all required fields
+        room_match = re.search(r'book recurring\s+(nest|treehouse|lighthouse|raven|hummingbird)', message)
+        start_date_match = re.search(r'(?:book recurring\s+\w+,\s*)(\d{1,2}(?:st|nd|rd|th)?\s+(?:of\s+)?[A-Za-z]+|\d{1,2}/\d{1,2}(?:/\d{4})?|today|tomorrow)', message)
+        end_date_match = re.search(r',\s*(\d{1,2}(?:st|nd|rd|th)?\s+(?:of\s+)?[A-Za-z]+|\d{1,2}/\d{1,2}(?:/\d{4})?|today|tomorrow)\s*,\s*(?:daily|weekly|biweekly|monthly)', message)
+        frequency_match = re.search(r',\s*(daily|weekly|biweekly|monthly)', message)
+        time_match = re.search(r',\s*(\d{1,2}(?::\d{2})?(?:am|pm)|\d{2}:\d{2})', message)
+        duration_match = re.search(r',\s*(\d+)\s+(hour|minute|min|m|minutes|mins|hours)s?', message)
+        event_match = re.search(r',\s*([^,]+?)\s*,\s*(?:internal|client)', message)
+        type_match = re.search(r',\s*(internal|client)\s*,', message)
+        name_match = re.search(r',\s*(?:internal|client)\s*,\s*([^,]+)$', message)
+
+        # Add debug logging
+        logging.debug(f"Start date match: {start_date_match.group(1) if start_date_match else None}")
+        logging.debug(f"End date match: {end_date_match.group(1) if end_date_match else None}")
+        logging.debug(f"Frequency match: {frequency_match.group(1) if frequency_match else None}")
+
+        # Validate all required fields
+        if not all([room_match, start_date_match, end_date_match, frequency_match, time_match, 
+                    duration_match, event_match, type_match, name_match]):
+            return (
+                "Please book a recurring room using this format:\n"
+                "`@floor10roombooking book recurring [room], [start date], [end date], [frequency], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
+                "Example: `@floor10roombooking book recurring nest, 22nd November, 22nd December, weekly, 2pm, 2 hours, Team Sync, internal, John Smith`\n"
+                "Frequency options: daily, weekly, biweekly, monthly\n"
+                "Date formats accepted: 'today', 'tomorrow', '28th November', '22nd of November', '19/12', '19/12/2024'"
+            )
+
+        # Extract values
+        room_id = room_match.group(1).upper()
+        start_date_str = start_date_match.group(1)
+        end_date_str = end_date_match.group(1)
+        frequency = frequency_match.group(1)
+        time_str = time_match.group(1)
+
+        # Parse dates and time
+        start_date = parse_date_time(start_date_str, time_str)
+        end_date = parse_date_time(end_date_str, time_str)
+        
+        if not start_date or not end_date:
+            return "I couldn't understand the dates and time. Please try again."
+        
+        if start_date.date() >= end_date.date():
+            return "The end date must be after the start date."
+
+        # Parse duration
+        amount = int(duration_match.group(1))
+        unit = duration_match.group(2).lower()
+        if unit in ['hour', 'hours']:
+            duration_minutes = amount * 60
+        elif unit in ['minute', 'minutes', 'min', 'mins', 'm']:
+            duration_minutes = amount
+            if amount not in [15, 30, 45] and amount < 60:
+                return "For bookings less than 1 hour, please use 15, 30, or 45 minute intervals."
+
+        # Get other details
+        event_name = event_match.group(1).strip()
+        meeting_type = type_match.group(1)
+        contact_name = name_match.group(1).strip()
+
+        # Calculate all booking dates based on frequency
+        current_date = start_date
+        booking_dates = []
+        failed_bookings = []
+        successful_bookings = []
+
+        while current_date.date() <= end_date.date():
+            booking_dates.append(current_date)
+            if frequency == 'daily':
+                current_date += timedelta(days=1)
+            elif frequency == 'weekly':
+                current_date += timedelta(days=7)
+            elif frequency == 'biweekly':
+                current_date += timedelta(days=14)
+            elif frequency == 'monthly':
+                # Add one month (approximately)
+                if current_date.month == 12:
+                    next_date = current_date.replace(year=current_date.year + 1, month=1)
+                else:
+                    next_date = current_date.replace(month=current_date.month + 1)
+                current_date = next_date
+
+        # Try to book each date individually
+        for booking_date in booking_dates:
+            booking_end = booking_date + timedelta(minutes=duration_minutes)
+            
+            # Check if this specific timeslot is available
+            if self.room_manager.check_room_availability(room_id, booking_date, duration_minutes):
+                # Create the booking
+                booking = self.room_manager.book_room(
+                    room_id, booking_date, duration_minutes,
+                    event_name, meeting_type, contact_name, user_id
+                )
+                if booking:
+                    successful_bookings.append(booking_date)
+                else:
+                    failed_bookings.append(booking_date)
+            else:
+                failed_bookings.append(booking_date)
+
+        # Prepare response message
+        response = []
+        if successful_bookings:
+            response.append(f"Successfully booked {room_id} for the following dates:")
+            for date in successful_bookings:
+                end_time = date + timedelta(minutes=duration_minutes)
+                response.append(f"• {date.strftime('%B %d')} from {date.strftime('%I:%M %p')} to {end_time.strftime('%I:%M %p')}")
+
+        if failed_bookings:
+            if response:
+                response.append("\nThe following bookings could not be made due to conflicts:")
+            else:
+                response.append("Could not make the following bookings due to conflicts:")
+            for date in failed_bookings:
+                response.append(f"• {date.strftime('%B %d')} at {date.strftime('%I:%M %p')}")
+
+        if not successful_bookings and not failed_bookings:
+            return "No bookings were created. Please check the date range and frequency."
+
         return "\n".join(response)
     
