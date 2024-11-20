@@ -84,6 +84,7 @@ class SlackBot:
                 "• `@floor10roombooking list rooms` - See all available rooms\n"
                 "• `@floor10roombooking list available rooms for [date]` - Check room availability\n"
                 "• `@floor10roombooking list my bookings` - View your active bookings\n"
+                "• `@floor10roombooking show all bookings in [month]` - View all bookings for a month\n"
                 "• `@floor10roombooking cancel booking` - Cancel your bookings\n\n"
                 "For more details about any command, just try it and I'll guide you through the process!"
             )

@@ -3,6 +3,7 @@ import re
 from typing import List
 from utils.date_utils import parse_date_time
 import logging
+import calendar
 
 class MessageHandler:
     def __init__(self, room_manager):
@@ -45,6 +46,8 @@ class MessageHandler:
             return self._handle_booking_request(message, user_id)
         elif message == 'list my bookings':
             return self._handle_list_user_bookings(user_id)
+        elif re.search(r'show all bookings in \w+', message.lower()):
+            return self._handle_show_monthly_bookings(message)
         
         # If no command matches, return help message
         logging.debug(f"No command match found for message: '{message}'")
@@ -231,6 +234,7 @@ class MessageHandler:
             "• `@floor10roombooking list rooms` - See all available rooms\n"
             "• `@floor10roombooking list available rooms for [date]` - Check room availability\n"
             "• `@floor10roombooking list my bookings` - View your active bookings\n"
+            "• `@floor10roombooking show all bookings in [month]` - View all bookings for a month\n"
             "• `@floor10roombooking cancel booking` - Cancel your bookings\n\n"
             "For more details about any command, just try it and I'll guide you through the process!"
         )
@@ -419,4 +423,111 @@ class MessageHandler:
                 f"{booking['event_name']}"
             )
         return "\n".join(response)
+
+    def _handle_show_monthly_bookings(self, message: str) -> str:
+        """Handle request to show all bookings in a calendar view."""
+        try:
+            month_match = re.search(r'show all bookings in (\w+)', message.lower())
+            if not month_match:
+                return "Please specify a month, e.g., '@floor10roombooking show all bookings in December'"
+            
+            month_str = month_match.group(1)
+            month_names = {month.lower(): i for i, month in enumerate(calendar.month_name) if month}
+            
+            if month_str not in month_names:
+                return "Invalid month name. Please use full month names (e.g., December)"
+            
+            month_num = month_names[month_str]
+            current_year = datetime.now().year
+            if month_num < datetime.now().month:
+                current_year += 1
+
+            # Get all bookings for the month
+            bookings_by_date = {}
+            for room in self.room_manager.get_all_rooms():
+                for booking in room.bookings:
+                    booking_start = datetime.fromisoformat(booking['start_time'])
+                    booking_end = datetime.fromisoformat(booking['end_time'])
+                    if booking_start.month == month_num and booking_start.year == current_year:
+                        date_key = booking_start.date()
+                        if date_key not in bookings_by_date:
+                            bookings_by_date[date_key] = []
+                        bookings_by_date[date_key].append({
+                            'room': room.name,
+                            'start_time': booking_start.strftime('%H:%M'),
+                            'end_time': booking_end.strftime('%H:%M'),
+                            'event': booking['event_name'],
+                            'contact': booking.get('contact_name', 'N/A')
+                        })
+
+            # Create calendar view
+            cal = calendar.monthcalendar(current_year, month_num)
+            response = [f"📅 Calendar for {calendar.month_name[month_num]} {current_year}\n"]
+            
+            # Add weekday headers
+            response.append("```")
+            response.append("MON             TUE             WED             THU             FRI")
+            response.append("─" * 80)
+            
+            # Process each week
+            for week in cal:
+                week_lines = [""] * 7  # 7 lines per day (1 for date, up to 3 bookings × 2 lines each)
+                
+                # Process each day in the week (Monday to Friday only)
+                for day_idx, day in enumerate(week[:5]):
+                    if day == 0:
+                        # Empty day (padding at start/end of month)
+                        for i in range(7):
+                            week_lines[i] += " " * 15
+                    else:
+                        date = datetime(current_year, month_num, day).date()
+                        day_bookings = bookings_by_date.get(date, [])
+                        
+                        # Format day number
+                        day_str = f"{day:2d}"
+                        if day_bookings:
+                            day_str = f"*{day_str}*"
+                        
+                        # Add day number to first line
+                        week_lines[0] += f"{day_str:<15}"
+                        
+                        # Add bookings (up to 3 per day, each booking takes 2 lines)
+                        for i, booking in enumerate(sorted(day_bookings, key=lambda x: x['start_time'])[:3]):
+                            if 2*i + 1 < len(week_lines):
+                                time_str = f"• {booking['start_time']}-{booking['end_time']}"
+                                room_str = f"  {booking['room'].replace('The ', '')}"
+                                week_lines[2*i + 1] += f"{time_str:<15}"
+                                week_lines[2*i + 2] += f"{room_str:<15}"
+                        
+                        # Add padding for remaining lines
+                        for i in range((len(day_bookings) * 2) + 1, 7):
+                            week_lines[i] += " " * 15
+                
+                # Add non-empty lines to response
+                response.extend(line.rstrip() for line in week_lines if line.strip())
+                response.append("─" * 80)
+            
+            response.append("```")
+            
+            # Add booking details below calendar
+            response.append("\nDetailed Bookings:")
+            has_bookings = False
+            for date in sorted(bookings_by_date.keys()):
+                has_bookings = True
+                response.append(f"\n{date.strftime('%B %d')} ({calendar.day_name[date.weekday()]}):")
+                for booking in sorted(bookings_by_date[date], key=lambda x: x['start_time']):
+                    response.append(
+                        f"• {booking['start_time']}-{booking['end_time']} - "
+                        f"{booking['room']} - {booking['event']} - "
+                        f"Contact: {booking['contact']}"
+                    )
+            
+            if not has_bookings:
+                response.append("\nNo bookings found for this month.")
+            
+            return "\n".join(response)
+            
+        except Exception as e:
+            logging.error(f"Error in _handle_show_monthly_bookings: {str(e)}")
+            return "Sorry, I encountered an error while creating the calendar view. Please try again."
     
