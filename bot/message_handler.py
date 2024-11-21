@@ -156,7 +156,7 @@ class MessageHandler:
     def _handle_list_available(self, message: str) -> str:
         """Handle request to list available rooms for a specific time."""
         # Extract date and time
-        date_match = re.search(r'(today|tomorrow|\d{1,2}(?:st|nd|rd|th)? [A-Za-z]+)', message)
+        date_match = re.search(r'for\s+(\d{1,2}(?:st|nd|rd|th)?\s+(?:of\s+)?[A-Za-z]+|\d{1,2}/\d{1,2}(?:/\d{4})?|today|tomorrow)', message)
         time_match = re.search(r'(\d{1,2}(?::\d{2})?(?:am|pm)|\d{2}:\d{2})', message)
         
         if not date_match:
@@ -234,7 +234,7 @@ class MessageHandler:
             "• `@floor10roombooking list rooms` - See all available rooms\n"
             "• `@floor10roombooking list available rooms for [date]` - Check room availability\n"
             "• `@floor10roombooking list my bookings` - View your active bookings\n"
-            "• `@floor10roombooking show all bookings in [month]` - View all bookings for a month\n"
+            "• `@floor10roombooking show all bookings in [month]` - Calendar view of all bookings for a month\n"
             "• `@floor10roombooking cancel booking` - Cancel your bookings\n\n"
             "For more details about any command, just try it and I'll guide you through the process!"
         )
@@ -400,7 +400,12 @@ class MessageHandler:
             else:
                 response.append("Could not make the following bookings due to conflicts:")
             for date in failed_bookings:
-                response.append(f"• {date.strftime('%B %d')} at {date.strftime('%I:%M %p')}")
+                end_time = date + timedelta(minutes=duration_minutes)
+                response.append(
+                    f"• {date.strftime('%B %d at %I:%M %p')} - "
+                    f"{end_time.strftime('%I:%M %p')} in {self.room_manager.rooms[room_id].name} "
+                    f"for '{event_name}' for a {meeting_type} meeting, contact: {contact_name}"
+                )
 
         if not successful_bookings and not failed_bookings:
             return "No bookings were created. Please check the date range and frequency."

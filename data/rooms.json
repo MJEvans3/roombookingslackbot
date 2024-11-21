@@ -136,7 +136,7 @@
         "start_time": "2024-12-03T09:00:00",
         "end_time": "2024-12-03T14:30:00",
         "duration_minutes": 330,
-        "event_name": "Catherine Coupland (Account event)",
+        "event_name": "Account event",
         "meeting_type": "client",
         "contact_name": "Catherine Coupland"
       },
@@ -144,9 +144,9 @@
         "start_time": "2024-12-03T14:30:00",
         "end_time": "2024-12-03T20:00:00",
         "duration_minutes": 330,
-        "event_name": "HRTT Growth Event",
+        "event_name": "HRTT Growth Event YP & Christmas Event",
         "meeting_type": "client",
-        "contact_name": "HRTT Growth Event"
+        "contact_name": "Ajay Pink, James King"
       },
       {
         "start_time": "2024-12-04T08:00:00",
@@ -157,6 +157,22 @@
         "contact_name": "Irene Loh"
       },
       {
+        "start_time": "2024-12-04T15:00:00",
+        "end_time": "2024-12-04T16:00:00",
+        "duration_minutes": 60,
+        "event_name": "Gen AI Society x PwDA",
+        "meeting_type": "client",
+        "contact_name": "Kyle Collins"
+      },
+      {
+        "start_time": "2024-12-04T16:30:00",
+        "end_time": "2024-12-04T20:00:00",
+        "duration_minutes": 210,
+        "event_name": "Data Services First Wednesdays Winter Social",
+        "meeting_type": "social",
+        "contact_name": "Rhea Warrier"
+      },
+      {
         "start_time": "2024-12-05T08:00:00",
         "end_time": "2024-12-05T15:00:00",
         "duration_minutes": 420,
@@ -165,52 +181,60 @@
         "contact_name": "Irene Loh"
       },
       {
-        "start_time": "2024-12-05T15:00:00",
+        "start_time": "2024-12-05T15:30:00",
         "end_time": "2024-12-05T17:30:00",
-        "duration_minutes": 150,
+        "duration_minutes": 120,
         "event_name": "DALAS",
-        "meeting_type": "client",
-        "contact_name": "Eli Pinto"
+        "meeting_type": "team",
+        "contact_name": "Madelaine Curry"
+      },
+      {
+        "start_time": "2024-12-05T17:30:00",
+        "end_time": "2024-12-05T20:00:00",
+        "duration_minutes": 150,
+        "event_name": "Scottish Power Christmas party",
+        "meeting_type": "social",
+        "contact_name": "Georgia Argent"
       },
       {
         "start_time": "2024-12-06T08:00:00",
         "end_time": "2024-12-06T17:00:00",
         "duration_minutes": 540,
-        "event_name": "Oracle Training Event",
-        "meeting_type": "client",
+        "event_name": "Oracle training Event",
+        "meeting_type": "training",
         "contact_name": "Lubica Sosovickova"
       },
       {
         "start_time": "2024-12-10T10:00:00",
         "end_time": "2024-12-10T11:00:00",
         "duration_minutes": 60,
-        "event_name": "Gen AI Society Event",
-        "meeting_type": "internal",
+        "event_name": "Gen AI Soc | Watsonx.governance",
+        "meeting_type": "training",
         "contact_name": "Kyle Collins"
       },
       {
         "start_time": "2024-12-10T12:00:00",
         "end_time": "2024-12-10T14:00:00",
         "duration_minutes": 120,
-        "event_name": "Public Event",
-        "meeting_type": "client",
-        "contact_name": "Andreea Opkala"
+        "event_name": "MakeHerStory Public Event",
+        "meeting_type": "public",
+        "contact_name": "Andreea Okpala"
       },
       {
         "start_time": "2024-12-10T14:00:00",
         "end_time": "2024-12-10T15:00:00",
         "duration_minutes": 60,
-        "event_name": "Insight into Design",
-        "meeting_type": "internal",
+        "event_name": "HelloiX Insight into Design",
+        "meeting_type": "client",
         "contact_name": "Jamie Doyle"
       },
       {
         "start_time": "2024-12-10T16:00:00",
-        "end_time": "2024-12-10T17:00:00",
-        "duration_minutes": 60,
-        "event_name": "Logging Relaunch",
-        "meeting_type": "client",
-        "contact_name": "N/A"
+        "end_time": "2024-12-10T20:00:00",
+        "duration_minutes": 240,
+        "event_name": "Loopio Relaunch",
+        "meeting_type": "team",
+        "contact_name": "Madelaine Curry"
       },
       {
         "start_time": "2024-12-11T08:00:00",
@@ -225,14 +249,14 @@
         "end_time": "2024-12-11T15:00:00",
         "duration_minutes": 60,
         "event_name": "EC Connect",
-        "meeting_type": "client",
+        "meeting_type": "team",
         "contact_name": "Elsa Wadhwa"
       },
       {
         "start_time": "2024-12-11T15:00:00",
         "end_time": "2024-12-11T18:00:00",
         "duration_minutes": 180,
-        "event_name": "Monthly Client Event",
+        "event_name": "Monthly Client event",
         "meeting_type": "client",
         "contact_name": "Ami Encarnacion"
       },
@@ -240,24 +264,24 @@
         "start_time": "2024-12-11T18:00:00",
         "end_time": "2024-12-11T21:00:00",
         "duration_minutes": 180,
-        "event_name": "Data Services",
-        "meeting_type": "client",
-        "contact_name": "N/A"
+        "event_name": "Data Services First Wednesdays Winter Social",
+        "meeting_type": "social",
+        "contact_name": "Rhea Warrier"
       },
       {
         "start_time": "2024-12-12T10:30:00",
         "end_time": "2024-12-12T12:00:00",
         "duration_minutes": 90,
         "event_name": "WDC Ep5",
-        "meeting_type": "client",
+        "meeting_type": "team",
         "contact_name": "Gosia Jagoda"
       },
       {
         "start_time": "2024-12-12T12:00:00",
         "end_time": "2024-12-12T14:00:00",
         "duration_minutes": 120,
-        "event_name": "DALAS Eli Pinto",
-        "meeting_type": "client",
+        "event_name": "DALAS",
+        "meeting_type": "team",
         "contact_name": "Madelaine Curry"
       },
       {
@@ -273,30 +297,30 @@
         "end_time": "2024-12-13T17:00:00",
         "duration_minutes": 300,
         "event_name": "Provisional booking of iX Q4 AHC",
-        "meeting_type": "client",
-        "contact_name": "Ellie Crayton / James Porter"
+        "meeting_type": "team",
+        "contact_name": "Ellie Crayton, James Porter"
       },
       {
         "start_time": "2024-12-13T17:00:00",
         "end_time": "2024-12-13T20:00:00",
         "duration_minutes": 180,
-        "event_name": "iX-CT AHC Social",
-        "meeting_type": "client",
+        "event_name": "iX-CT AHC social",
+        "meeting_type": "social",
         "contact_name": "N/A"
       },
       {
         "start_time": "2024-12-17T10:00:00",
         "end_time": "2024-12-17T13:00:00",
         "duration_minutes": 180,
-        "event_name": "What's On Our Truck",
-        "meeting_type": "client",
-        "contact_name": "David Bibbs"
+        "event_name": "What\u2019s On Our Truck",
+        "meeting_type": "team",
+        "contact_name": "David Bibbs, Stefania Kern-Erdei"
       },
       {
         "start_time": "2024-12-18T11:00:00",
         "end_time": "2024-12-18T13:00:00",
         "duration_minutes": 120,
-        "event_name": "T-Level PPPC Workshop",
+        "event_name": "T-Level PPPC workshop",
         "meeting_type": "client",
         "contact_name": "Gosia Jagoda"
       },
@@ -305,7 +329,7 @@
         "end_time": "2024-12-19T13:00:00",
         "duration_minutes": 60,
         "event_name": "Delivery Community AHC",
-        "meeting_type": "client",
+        "meeting_type": "team",
         "contact_name": "Sophia Ambrose"
       },
       {
@@ -313,7 +337,7 @@
         "end_time": "2024-12-19T17:30:00",
         "duration_minutes": 60,
         "event_name": "HLS Townhall",
-        "meeting_type": "client",
+        "meeting_type": "team",
         "contact_name": "Matthew Cleary"
       },
       {
@@ -483,6 +507,33 @@
         "event_name": "Delivery Community Events",
         "meeting_type": "client",
         "contact_name": "N/A"
+      },
+      {
+        "start_time": "2024-12-07T14:00:00",
+        "end_time": "2024-12-07T16:00:00",
+        "duration_minutes": 120,
+        "event_name": "nwg ncf customer playback",
+        "meeting_type": "client",
+        "contact_name": "john smith",
+        "user_id": "U080SQZMX1T"
+      },
+      {
+        "start_time": "2024-11-23T14:00:00",
+        "end_time": "2024-11-23T16:00:00",
+        "duration_minutes": 120,
+        "event_name": "team sync",
+        "meeting_type": "internal",
+        "contact_name": "john smith",
+        "user_id": "U080SQZMX1T"
+      },
+      {
+        "start_time": "2024-12-21T14:00:00",
+        "end_time": "2024-12-21T16:00:00",
+        "duration_minutes": 120,
+        "event_name": "team sync",
+        "meeting_type": "internal",
+        "contact_name": "john smith",
+        "user_id": "U080SQZMX1T"
       }
     ]
   },
