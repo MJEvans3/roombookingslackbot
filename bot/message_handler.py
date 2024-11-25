@@ -461,114 +461,134 @@ class MessageHandler:
         return "\n".join(response)
 
     def _handle_show_monthly_bookings(self, message: str) -> str:
-        """Handle request to show all bookings in a calendar view."""
+        """Show monthly bookings in a calendar view."""
         try:
-            # Update the regex pattern to match both formats
-            month_match = re.search(r'(?:calendar view|show all bookings in)\s+(\w+)', message.lower())
-            if not month_match:
-                return "Please specify a month, e.g., '/calendar December' or '/calendar Dec'"
+            # Parse month from message
+            month_str = message.replace('calendar view ', '').strip()
+            month_names = {month.lower(): i for i, month in enumerate(calendar.month_name) if month}
+            month_abbr = {month.lower(): i for i, month in enumerate(calendar.month_abbr) if month}
             
-            month_str = month_match.group(1)
+            # Room name abbreviations
+            room_abbr = {
+                "LIGHTHOUSE": "Lght",
+                "TREEHOUSE": "Tree",
+                "RAVEN": "Ravn",
+                "HUMMINGBIRD": "Hmng",
+                "NEST": "Nest"
+            }
             
-            # Create dictionary for both full and abbreviated month names
-            month_names = {}
-            for i, month in enumerate(calendar.month_name):
-                if month:  # Skip empty string at index 0
-                    month_names[month.lower()] = i
-                    # Add three-letter abbreviation
-                    month_names[month[:3].lower()] = i
+            month_str = month_str.lower()
+            if month_str in month_names:
+                month_num = month_names[month_str]
+            elif month_str in month_abbr:
+                month_num = month_abbr[month_str]
+            else:
+                return "Please specify a valid month, e.g., 'December' or 'Dec'"
             
-            if month_str not in month_names:
-                return "Invalid month name. Please use full month names (e.g., December) or abbreviations (e.g., Dec)"
-            
-            month_num = month_names[month_str]
             current_year = datetime.now().year
-            if month_num < datetime.now().month:
+            if datetime.now().month > month_num:
                 current_year += 1
 
-            # Get all bookings for the month
-            bookings_by_date = {}
-            for room in self.room_manager.get_all_rooms():
+            # First, create detailed bookings view
+            all_bookings = []
+            for room_id, room in self.room_manager.rooms.items():
                 for booking in room.bookings:
                     booking_start = datetime.fromisoformat(booking['start_time'])
-                    booking_end = datetime.fromisoformat(booking['end_time'])
                     if booking_start.month == month_num and booking_start.year == current_year:
-                        date_key = booking_start.date()
-                        if date_key not in bookings_by_date:
-                            bookings_by_date[date_key] = []
-                        bookings_by_date[date_key].append({
+                        all_bookings.append({
+                            'date': booking_start,
+                            'start': booking_start,
+                            'end': datetime.fromisoformat(booking['end_time']),
                             'room': room.name,
-                            'start_time': booking_start.strftime('%H:%M'),
-                            'end_time': booking_end.strftime('%H:%M'),
                             'event': booking['event_name'],
-                            'contact': booking.get('contact_name', 'N/A')
+                            'type': booking['meeting_type'],
+                            'contact': booking['contact_name']
                         })
 
+            # Sort bookings by date and time
+            all_bookings.sort(key=lambda x: (x['date'].date(), x['start'].time()))
+
+            # Create response with detailed bookings
+            response = [f"Detailed Bookings for {calendar.month_name[month_num]} {current_year}:"]
+            current_date = None
+            
+            for booking in all_bookings:
+                booking_date = booking['date'].date()
+                if booking_date != current_date:
+                    current_date = booking_date
+                    response.append(f"\n{booking_date.strftime('%B %d (%A)')}")
+                
+                response.append(
+                    f"• {booking['start'].strftime('%H:%M')}-{booking['end'].strftime('%H:%M')} - "
+                    f"{booking['room']} - {booking['event']} - Contact: {booking['contact']}"
+                )
+
+            # Add calendar view header
+            response.extend([
+                f"\n📅 Calendar for {calendar.month_name[month_num]} {current_year}\n",
+                "```"
+            ])
+            
             # Create calendar view
-            cal = calendar.monthcalendar(current_year, month_num)
-            response = [f"📅 Calendar for {calendar.month_name[month_num]} {current_year}\n"]
+            CELL_WIDTH = 18
             
             # Add weekday headers
-            response.append("```")
-            response.append("MON             TUE             WED             THU             FRI")
-            response.append("─" * 80)
+            header = "".join(day.ljust(CELL_WIDTH) for day in ["MON", "TUE", "WED", "THU", "FRI"])
+            response.append(header)
+            response.append("─" * (CELL_WIDTH * 5))
             
             # Process each week
+            cal = calendar.monthcalendar(current_year, month_num)
             for week in cal:
-                week_lines = [""] * 7  # 7 lines per day (1 for date, up to 3 bookings × 2 lines each)
+                week_lines = [""] * 20  # Increased max lines per week to accommodate more bookings
+                max_lines_used = 1  # At least show the date line
                 
-                # Process each day in the week (Monday to Friday only)
-                for day_idx, day in enumerate(week[:5]):
+                # Process only weekdays
+                for day_idx in range(min(5, len(week))):
+                    day = week[day_idx]
                     if day == 0:
-                        # Empty day (padding at start/end of month)
-                        for i in range(7):
-                            week_lines[i] += " " * 15
-                    else:
-                        date = datetime(current_year, month_num, day).date()
-                        day_bookings = bookings_by_date.get(date, [])
-                        
-                        # Format day number
-                        day_str = f"{day:2d}"
-                        if day_bookings:
-                            day_str = f"*{day_str}*"
-                        
-                        # Add day number to first line
-                        week_lines[0] += f"{day_str:<15}"
-                        
-                        # Add bookings (up to 3 per day, each booking takes 2 lines)
-                        for i, booking in enumerate(sorted(day_bookings, key=lambda x: x['start_time'])[:3]):
-                            if 2*i + 1 < len(week_lines):
-                                time_str = f"• {booking['start_time']}-{booking['end_time']}"
-                                room_str = f"  {booking['room'].replace('The ', '')}"
-                                week_lines[2*i + 1] += f"{time_str:<15}"
-                                week_lines[2*i + 2] += f"{room_str:<15}"
-                        
-                        # Add padding for remaining lines
-                        for i in range((len(day_bookings) * 2) + 1, 7):
-                            week_lines[i] += " " * 15
+                        # Empty day
+                        for i in range(20):  # Increased to match new max lines
+                            week_lines[i] += " " * CELL_WIDTH
+                        continue
+                    
+                    # Get all bookings for this day
+                    date = datetime(current_year, month_num, day)
+                    day_bookings = []
+                    for room_id, room in self.room_manager.rooms.items():
+                        for booking in room.bookings:
+                            booking_start = datetime.fromisoformat(booking['start_time'])
+                            booking_end = datetime.fromisoformat(booking['end_time'])
+                            if booking_start.date() == date.date():
+                                day_bookings.append({
+                                    'start': booking_start,
+                                    'end': booking_end,
+                                    'room': room_abbr[room_id]
+                                })
+                    
+                    # Sort bookings by time
+                    day_bookings.sort(key=lambda x: x['start'])
+                    
+                    # Format day cell with asterisks
+                    week_lines[0] += f"*{day}*".ljust(CELL_WIDTH)  # First line is day number with asterisks
+                    
+                    # Add each booking on its own line - removed the limit
+                    for i, booking in enumerate(day_bookings):
+                        booking_str = (f"{booking['start'].strftime('%H:%M')}-"
+                                     f"{booking['end'].strftime('%H:%M')} "
+                                     f"{booking['room']}")
+                        week_lines[i + 1] += booking_str.ljust(CELL_WIDTH)
+                        max_lines_used = max(max_lines_used, i + 2)
+                    
+                    # Fill remaining lines with spaces
+                    for i in range(len(day_bookings) + 1, 20):  # Increased to match new max lines
+                        week_lines[i] += " " * CELL_WIDTH
                 
                 # Add non-empty lines to response
-                response.extend(line.rstrip() for line in week_lines if line.strip())
-                response.append("─" * 80)
+                response.extend(line.rstrip() for line in week_lines[:max_lines_used])
+                response.append("─" * (CELL_WIDTH * 5))
             
             response.append("```")
-            
-            # Add booking details below calendar
-            response.append("\nDetailed Bookings:")
-            has_bookings = False
-            for date in sorted(bookings_by_date.keys()):
-                has_bookings = True
-                response.append(f"\n{date.strftime('%B %d')} ({calendar.day_name[date.weekday()]}):")
-                for booking in sorted(bookings_by_date[date], key=lambda x: x['start_time']):
-                    response.append(
-                        f"• {booking['start_time']}-{booking['end_time']} - "
-                        f"{booking['room']} - {booking['event']} - "
-                        f"Contact: {booking['contact']}"
-                    )
-            
-            if not has_bookings:
-                response.append("\nNo bookings found for this month.")
-            
             return "\n".join(response)
             
         except Exception as e:

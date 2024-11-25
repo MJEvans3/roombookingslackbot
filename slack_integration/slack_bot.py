@@ -60,10 +60,9 @@ class SlackBot:
             client.send_socket_mode_response(SocketModeResponse(envelope_id=req.envelope_id))
             event = req.payload["event"]
             
-            # Send welcome message as ephemeral response
-            self.web_client.chat_postEphemeral(
+            # Send welcome message as public response (not ephemeral)
+            self.web_client.chat_postMessage(
                 channel=event["channel"],
-                user=event["user"],
                 text=self._get_welcome_message()
             )
 

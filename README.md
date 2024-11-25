@@ -20,14 +20,26 @@ A Slack bot that helps manage meeting room bookings for Floor 10. The bot allows
 
 ## Commands
 
-- `@floor10roombooking book a room` - Shows booking format
-- `@floor10roombooking book [room], [date], [time], [duration], [event details], [internal/client], [Full Contact Name]`
-- `@floor10roombooking list rooms` - Shows all available rooms
-- `@floor10roombooking list available rooms for [date]` - Shows available rooms for a specific date
-- `@floor10roombooking cancel booking` - Starts booking cancellation process
+- `/book` - Start a booking process
+  - Single booking format: `/book [room], [date], [time], [duration], [event details], [internal/client], [Full Contact Name]`
+  - Recurring booking format: `/book recurring [room], [start date], [end date], [frequency], [time], [duration], [event details], [internal/client], [Full Contact Name]`
+- `/rooms` - List all available rooms
+- `/rooms available [date]` - Show available rooms for a specific date
+- `/mybookings` - View your bookings
+- `/mybookings cancel [number(s)]` - Cancel specific bookings
+- `/mybookings cancel all` - Cancel all your bookings
+- `/calendar [month]` - View calendar for a specific month
 
-Example booking command:
-`@floor10roombooking book nest, tomorrow, 2pm, 2 hours, Team Meeting, internal, John Smith`
+Example booking commands:
+- Single booking: `/book nest, tomorrow, 2pm, 2 hours, Team Meeting, internal, John Smith`
+- Recurring booking: `/book recurring nest, 22nd Nov, 22nd Dec, weekly, 2pm, 2 hours, Team Sync, internal, John Smith`
+
+*Date formats accepted:* 'today', 'tomorrow', '28th Nov', '22nd of November', '19/12', '19/12/2024'
+*Supported Frequencies:* daily, weekly, biweekly, monthly
+*Duration formats accepted:*
+- Hours: '3h', '3 h', '3 hours'
+- Minutes: '45m', '45 m', '45 minutes'
+- Combined: '2 hours 30 minutes', '2h 30m'
 
 ## Installation
 
