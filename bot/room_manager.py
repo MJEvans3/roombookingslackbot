@@ -99,17 +99,19 @@ class RoomManager:
         # Get all bookings for the room
         bookings = self.get_room_schedule(room_id)
         
-        # Check for conflicts with existing bookings
+        # Check for conflicts with existing bookings ON THE SAME DAY
         for booking in bookings:
             booking_start = datetime.fromisoformat(booking["start_time"])
             booking_end = datetime.fromisoformat(booking["end_time"])
             
-            logging.debug(f"Existing booking: {booking_start} to {booking_end}")
-            
-            # Check if there's any overlap
-            if (start_time < booking_end and end_time > booking_start):
-                logging.debug(f"Conflict found with booking: {booking['event_name']}")
-                return False
+            # Only check bookings on the same day
+            if booking_start.date() == start_time.date():
+                logging.debug(f"Checking booking: {booking_start} to {booking_end}")
+                
+                # Check if there's any overlap
+                if (start_time < booking_end and end_time > booking_start):
+                    logging.debug(f"Conflict found with booking: {booking['event_name']}")
+                    return False
                 
         logging.debug("No conflicts found, room is available")
         return True
@@ -459,16 +461,11 @@ class RoomManager:
         failed_bookings = []
         current_date = start_date
 
+        # First, check all dates for availability
+        dates_to_book = []
         while current_date.date() <= end_date.date():
             if self.check_room_availability(room_id, current_date, duration_minutes):
-                booking = self.book_room(
-                    room_id, current_date, duration_minutes,
-                    event_name, meeting_type, contact_name, user_id
-                )
-                if booking:
-                    successful_bookings.append(current_date)
-                else:
-                    failed_bookings.append(current_date)
+                dates_to_book.append(current_date)
             else:
                 failed_bookings.append(current_date)
 
@@ -484,5 +481,16 @@ class RoomManager:
                     current_date = current_date.replace(year=current_date.year + 1, month=1)
                 else:
                     current_date = current_date.replace(month=current_date.month + 1)
+
+        # Then, book all available dates
+        for booking_date in dates_to_book:
+            booking = self.book_room(
+                room_id, booking_date, duration_minutes,
+                event_name, meeting_type, contact_name, user_id
+            )
+            if booking:
+                successful_bookings.append(booking_date)
+            else:
+                failed_bookings.append(booking_date)
 
         return successful_bookings, failed_bookings

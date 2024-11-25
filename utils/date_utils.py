@@ -92,10 +92,20 @@ def parse_date_time(date_str: str, time_str: str) -> datetime:
     
     # Parse time
     try:
+        time_str = time_str.lower().strip().replace('.', ':')  # Convert 2.30pm to 2:30pm
+        
         if "am" in time_str or "pm" in time_str:
-            time = datetime.strptime(time_str, "%I%p").time()
+            # Handle both formats: "2pm" and "2:30pm"
+            if ':' in time_str:
+                time = datetime.strptime(time_str, "%I:%M%p").time()
+            else:
+                time = datetime.strptime(time_str, "%I%p").time()
         else:
-            time = datetime.strptime(time_str, "%H:%M").time()
+            # Handle 24-hour format
+            if ':' in time_str:
+                time = datetime.strptime(time_str, "%H:%M").time()
+            else:
+                time = datetime.strptime(time_str, "%H").time()
             
         result = datetime.combine(target_date.date(), time)
         logging.debug(f"Final datetime: {result}")

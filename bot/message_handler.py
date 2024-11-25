@@ -12,10 +12,8 @@ class MessageHandler:
     def handle_message(self, message: str, user_id: str) -> str:
         """Process incoming Slack messages and return appropriate responses."""
         logging.debug(f"Received message: '{message}' from user: {user_id}")
-        
-        # Remove the bot mention and convert to lowercase
-        message = re.sub(r'<@[A-Z0-9]+>\s*', '', message).lower().strip()
-        logging.debug(f"Processed message after removing mention: '{message}'")
+        message = message.lower().strip()
+        logging.debug(f"Processed message: '{message}'")
         
         # Handle cancellation with booking number(s)
         cancel_match = re.match(r'cancel booking[s]?\s+#?(\d+(?:\s*,\s*\d+)*)', message)
@@ -26,27 +24,17 @@ class MessageHandler:
             return self._handle_booking_cancellation(user_id, cancel_all=True)
         elif message == 'cancel booking':
             return self._handle_cancellation_request(user_id)
-        elif message == 'book a room':
-            return (
-                "Would you like to make a single or recurring booking?\n\n"
-                "• For a single booking, reply with: `@floor10roombooking book [room], [date], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n"
-                "• For a recurring booking, reply with: `@floor10roombooking book recurring [room], [start date], [end date], [frequency (daily/weekly/biweekly/monthly)], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
-                "Examples:\n"
-                "Single: `@floor10roombooking book nest, tomorrow, 2pm, 2 hours, NWG NCF Customer Playback, client, John Smith`\n"
-                "Recurring: `@floor10roombooking book recurring nest, 22nd November, 22nd December, weekly, 2pm, 2 hours, Team Sync, internal, John Smith`\n\n"
-                "Date formats accepted: 'today', 'tomorrow', '28th November', '22nd of November', '19/12', '19/12/2024'"
-            )
-        elif message.startswith('book recurring '):
-            return self._handle_recurring_booking_request(message, user_id)
         elif message == 'list rooms':
             return self._handle_list_rooms()
         elif message.startswith('list available'):
             return self._handle_list_available(message)
         elif message.startswith('book '):
+            if message.startswith('book recurring '):
+                return self._handle_recurring_booking_request(message, user_id)
             return self._handle_booking_request(message, user_id)
         elif message == 'list my bookings':
             return self._handle_list_user_bookings(user_id)
-        elif re.search(r'show all bookings in \w+', message.lower()):
+        elif message.startswith('calendar view '):
             return self._handle_show_monthly_bookings(message)
         
         # If no command matches, return help message
@@ -58,8 +46,8 @@ class MessageHandler:
         # Extract all required fields
         room_match = re.search(r'book\s+(nest|treehouse|lighthouse|raven|hummingbird)', message)
         date_match = re.search(r'(?:book\s+\w+,\s*)(\d{1,2}(?:st|nd|rd|th)?\s+(?:of\s+)?[A-Za-z]+|\d{1,2}/\d{1,2}(?:/\d{4})?|today|tomorrow)', message)
-        time_match = re.search(r',\s*(\d{1,2}(?::\d{2})?(?:am|pm)|\d{2}:\d{2})', message)
-        duration_match = re.search(r',\s*(\d+)\s+(hour|minute|min|m|minutes|mins|hours)s?', message)
+        time_match = re.search(r',\s*(\d{1,2}(?:[:.]\d{2})?(?:am|pm)|\d{2}[:.]\d{2})', message)
+        duration_match = re.search(r'(?:,\s*)((?:\d+\s*(?:h|m|hours?|minutes?)(?:\s*(?:and|,)?\s*\d+\s*(?:h|m|hours?|minutes?))?)|(?:\d+\s*(?:h|m)))', message)
         event_match = re.search(r',\s*([^,]+?)\s*,\s*(?:internal|client)', message)
         type_match = re.search(r',\s*(internal|client)\s*,', message)
         name_match = re.search(r',\s*(?:internal|client)\s*,\s*([^,]+)$', message)
@@ -68,10 +56,15 @@ class MessageHandler:
         if not all([room_match, date_match, time_match, duration_match, event_match, type_match, name_match]):
             return (
                 "Please book a room using this format:\n"
-                "`@floor10roombooking book [room], [date], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
-                "Example: `@floor10roombooking book nest, tomorrow, 2pm, 2 hours, NWG NCF Customer Playback, client, John Smith`\n"
-                "Date formats accepted: 'today', 'tomorrow', '28th November', '22nd of November', '19/12', '19/12/2024'"
-            )
+                "`/book [room], [date], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
+                "Example: `/book nest, tomorrow, 2pm, 2 hours, NWG NCF Customer Playback, client, John Smith`\n"
+                "*Date formats:* 'today', 'tomorrow', '28th Nov', '22nd of November', '19/12', '19/12/2024'\n"
+                "*Supported Frequencies:* daily, weekly, biweekly, monthly\n"
+                "*Duration formats accepted:*\n"
+                "• Hours: '3h', '3 h', '3 hours'\n"
+                "• Minutes: '45m', '45 m', '45 minutes'\n"
+                "• Combined: '2 hours 30 minutes', '2h 30m'\n\n"
+                )
         
         # Extract values
         room_id = room_match.group(1).upper()
@@ -84,15 +77,7 @@ class MessageHandler:
             return "I couldn't understand the date and time. Please try again."
             
         # Parse duration with support for minutes
-        amount = int(duration_match.group(1))
-        unit = duration_match.group(2).lower()
-        if unit in ['hour', 'hours']:
-            duration_minutes = amount * 60
-        elif unit in ['minute', 'minutes', 'min', 'mins', 'm']:
-            duration_minutes = amount
-            # Validate minute durations
-            if amount not in [15, 30, 45] and amount < 60:
-                return "For bookings less than 1 hour, please use 15, 30, or 45 minute intervals."
+        duration_minutes = self._parse_duration(duration_match.group(1))
         
         # Get other details
         event_name = event_match.group(1).strip()
@@ -121,6 +106,43 @@ class MessageHandler:
             )
         return "Sorry, I couldn't book that room."
 
+    def _parse_duration(self, duration_str: str) -> int:
+        """Parse duration string into minutes."""
+        # Clean up the input string
+        duration_str = duration_str.lower().strip()
+        
+        # Check for hours format (3h, 3 h)
+        hours_match = re.match(r'^(\d+)\s*h$', duration_str)
+        if hours_match:
+            return int(hours_match.group(1)) * 60
+        
+        # Check for minutes format (45m, 45 m, 45 min)
+        minutes_match = re.match(r'^(\d+)\s*(?:m|min)$', duration_str)
+        if minutes_match:
+            return int(minutes_match.group(1))
+        
+        # Check for combined format (1h 45m, 1h 45min, 1 hour 45 minutes)
+        combined_match = re.match(r'^(\d+)\s*(?:h|hours?)\s*(?:and|,)?\s*(\d+)\s*(?:m|min|minutes?)?$', duration_str)
+        if combined_match:
+            hours = int(combined_match.group(1))
+            minutes = int(combined_match.group(2))
+            return hours * 60 + minutes
+        
+        # Check for hours and minutes format (2 hours 30 minutes, 2 hours, 30 minutes)
+        hours_minutes_match = re.match(r'^(?:(\d+)\s*hours?)?(?:\s*(?:and|,)?\s*)?(?:(\d+)\s*(?:min|minutes?))?$', duration_str)
+        if hours_minutes_match and (hours_minutes_match.group(1) or hours_minutes_match.group(2)):
+            hours = int(hours_minutes_match.group(1) or 0)
+            minutes = int(hours_minutes_match.group(2) or 0)
+            return hours * 60 + minutes
+        
+        raise ValueError(
+            "Invalid duration format. Please use one of:\n"
+            "• '3h' or '3 h' for hours\n"
+            "• '45m', '45 min' or '45 minutes' for minutes\n"
+            "• '2h 30m', '1h 45min' for combined\n"
+            "• '2 hours 30 minutes' or '2 hours and 30 minutes'"
+        )
+
     def _handle_cancellation_request(self, user_id: str) -> str:
         """Handle a request to cancel a booking."""
         logging.debug(f"Handling cancellation request for user: {user_id}")
@@ -138,10 +160,10 @@ class MessageHandler:
                 f"{i}. {booking['room_name']} on {start_time.strftime('%B %d at %I:%M %p')} - {booking['event_name']}"
             )
         
-        booking_list.append("\nTo cancel a booking, reply with one of:")
-        booking_list.append("• `@floor10roombooking cancel booking <number>` (e.g., 1)")
-        booking_list.append("• `@floor10roombooking cancel bookings <numbers>` (e.g., 1,2,4)")
-        booking_list.append("• `@floor10roombooking cancel all bookings`")
+        booking_list.append("\nTo cancel a booking, use one of:")
+        booking_list.append("• `/mybookings cancel <number>` (e.g., 1)")
+        booking_list.append("• `/mybookings cancel <numbers>` (e.g., 1,2,4)")
+        booking_list.append("• `/mybookings cancel all`")
         
         return "\n".join(booking_list)
 
@@ -227,18 +249,20 @@ class MessageHandler:
         return "\n".join(response)
 
     def _get_help_message(self) -> str:
-        """Return help message with available commands."""
+        """Return help message for available commands."""
         return (
-            "Available commands:\n"
-            "• `@floor10roombooking book a room` - Start a new room booking\n"
-            "• `@floor10roombooking list rooms` - See all available rooms\n"
-            "• `@floor10roombooking list available rooms for [date]` - Check room availability\n"
-            "• `@floor10roombooking list my bookings` - View your active bookings\n"
-            "• `@floor10roombooking show all bookings in [month]` - Calendar view of all bookings for a month\n"
-            "• `@floor10roombooking cancel booking` - Cancel your bookings\n\n"
-            "For more details about any command, just try it and I'll guide you through the process!"
+            "Hello! Here are the available commands:\n\n"
+            "*Begin Booking Process:*\n"
+            "• `/book` - Single bookings or recurring bookings\n"
+            "*Calendar View*\n"
+            "• `/calendar [month]` - View calendar for a month\n"
+            "*Other Commands:*\n"
+            "• `/rooms available [date]` - Check room availability\n"
+            "• `/rooms` - List all rooms\n"
+            "• `/mybookings` - View your bookings\n"
+            "• `/mybookings cancel [number(s)]` - Cancel specific bookings after viewing them\n"
         )
-
+    
     def _handle_booking_cancellation(self, user_id: str, booking_numbers: List[int] = None, cancel_all: bool = False) -> str:
         """Handle the actual cancellation of bookings."""
         # Get current bookings before cancellation
@@ -289,34 +313,34 @@ class MessageHandler:
         """Handle recurring room booking requests."""
         # Extract all required fields
         room_match = re.search(r'book recurring\s+(nest|treehouse|lighthouse|raven|hummingbird)', message)
-        start_date_match = re.search(r'(?:book recurring\s+\w+,\s*)(\d{1,2}(?:st|nd|rd|th)?\s+(?:of\s+)?[A-Za-z]+|\d{1,2}/\d{1,2}(?:/\d{4})?|today|tomorrow)', message)
-        end_date_match = re.search(r',\s*(\d{1,2}(?:st|nd|rd|th)?\s+(?:of\s+)?[A-Za-z]+|\d{1,2}/\d{1,2}(?:/\d{4})?|today|tomorrow)\s*,\s*(?:daily|weekly|biweekly|monthly)', message)
+        date_match = re.search(r'(?:book\s+recurring\s+\w+,\s*)(\d{1,2}(?:st|nd|rd|th)?\s+(?:of\s+)?[A-Za-z]+|\d{1,2}/\d{1,2}(?:/\d{4})?|today|tomorrow)', message)
+        end_date_match = re.search(r',\s*(\d{1,2}(?:st|nd|rd|th)?\s+(?:of\s+)?[A-Za-z]+|\d{1,2}/\d{1,2}(?:/\d{4})?|today|tomorrow)', message)
         frequency_match = re.search(r',\s*(daily|weekly|biweekly|monthly)', message)
-        time_match = re.search(r',\s*(\d{1,2}(?::\d{2})?(?:am|pm)|\d{2}:\d{2})', message)
-        duration_match = re.search(r',\s*(\d+)\s+(hour|minute|min|m|minutes|mins|hours)s?', message)
+        time_match = re.search(r',\s*(\d{1,2}(?:[:.]\d{2})?(?:am|pm)|\d{2}[:.]\d{2})', message)
+        duration_match = re.search(r'(?:,\s*)((?:\d+\s*(?:h|m|hours?|minutes?|min)(?:\s*(?:and|,)?\s*\d+\s*(?:h|m|hours?|minutes?|min))?)|(?:\d+\s*(?:h|m)))', message)
         event_match = re.search(r',\s*([^,]+?)\s*,\s*(?:internal|client)', message)
         type_match = re.search(r',\s*(internal|client)\s*,', message)
         name_match = re.search(r',\s*(?:internal|client)\s*,\s*([^,]+)$', message)
 
         # Add debug logging
-        logging.debug(f"Start date match: {start_date_match.group(1) if start_date_match else None}")
+        logging.debug(f"Start date match: {date_match.group(1) if date_match else None}")
         logging.debug(f"End date match: {end_date_match.group(1) if end_date_match else None}")
         logging.debug(f"Frequency match: {frequency_match.group(1) if frequency_match else None}")
 
         # Validate all required fields
-        if not all([room_match, start_date_match, end_date_match, frequency_match, time_match, 
+        if not all([room_match, date_match, end_date_match, frequency_match, time_match, 
                     duration_match, event_match, type_match, name_match]):
             return (
                 "Please book a recurring room using this format:\n"
-                "`@floor10roombooking book recurring [room], [start date], [end date], [frequency], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
-                "Example: `@floor10roombooking book recurring nest, 22nd November, 22nd December, weekly, 2pm, 2 hours, Team Sync, internal, John Smith`\n"
+                "`/book recurring [room], [start date], [end date], [frequency], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
+                "Example: `/book recurring nest, 22nd November, 22nd December, weekly, 2pm, 2 hours, Team Sync, internal, John Smith`\n"
                 "Frequency options: daily, weekly, biweekly, monthly\n"
                 "Date formats accepted: 'today', 'tomorrow', '28th November', '22nd of November', '19/12', '19/12/2024'"
             )
 
         # Extract values
         room_id = room_match.group(1).upper()
-        start_date_str = start_date_match.group(1)
+        start_date_str = date_match.group(1)
         end_date_str = end_date_match.group(1)
         frequency = frequency_match.group(1)
         time_str = time_match.group(1)
@@ -386,29 +410,36 @@ class MessageHandler:
             else:
                 failed_bookings.append(booking_date)
 
-        # Prepare response message
+        # After all bookings are processed, format the response
         response = []
         if successful_bookings:
             response.append(f"Successfully booked {room_id} for the following dates:")
             for date in successful_bookings:
-                end_time = date + timedelta(minutes=duration_minutes)
-                response.append(f"• {date.strftime('%B %d')} from {date.strftime('%I:%M %p')} to {end_time.strftime('%I:%M %p')}")
+                response.append(f"• {date.strftime('%B %d')} from {date.strftime('%I:%M %p')} to {(date + timedelta(minutes=duration_minutes)).strftime('%I:%M %p')}")
 
         if failed_bookings:
             if response:
                 response.append("\nThe following bookings could not be made due to conflicts:")
-            else:
-                response.append("Could not make the following bookings due to conflicts:")
             for date in failed_bookings:
-                end_time = date + timedelta(minutes=duration_minutes)
-                response.append(
-                    f"• {date.strftime('%B %d at %I:%M %p')} - "
-                    f"{end_time.strftime('%I:%M %p')} in {self.room_manager.rooms[room_id].name} "
-                    f"for '{event_name}' for a {meeting_type} meeting, contact: {contact_name}"
-                )
-
-        if not successful_bookings and not failed_bookings:
-            return "No bookings were created. Please check the date range and frequency."
+                # Get the conflicting booking for this date
+                conflicts = [b for b in self.room_manager.get_room_schedule(room_id) 
+                           if datetime.fromisoformat(b['start_time']).date() == date.date() and
+                           (datetime.fromisoformat(b['start_time']) <= date + timedelta(minutes=duration_minutes) and
+                            datetime.fromisoformat(b['end_time']) >= date)]
+                
+                if conflicts:
+                    conflict = conflicts[0]  # Get the first conflicting booking
+                    response.append(
+                        f"• {date.strftime('%B %d')} at {date.strftime('%I:%M %p')} - "
+                        f"{(date + timedelta(minutes=duration_minutes)).strftime('%I:%M %p')} conflicts with existing booking:\n"
+                        f"  '{conflict['event_name']}' ({conflict['start_time'][11:16]} - "
+                        f"{conflict['end_time'][11:16]}) - Contact: {conflict['contact_name']}"
+                    )
+                else:
+                    response.append(
+                        f"• {date.strftime('%B %d')} at {date.strftime('%I:%M %p')} - "
+                        f"{(date + timedelta(minutes=duration_minutes)).strftime('%I:%M %p')}"
+                    )
 
         return "\n".join(response)
 
@@ -432,15 +463,23 @@ class MessageHandler:
     def _handle_show_monthly_bookings(self, message: str) -> str:
         """Handle request to show all bookings in a calendar view."""
         try:
-            month_match = re.search(r'show all bookings in (\w+)', message.lower())
+            # Update the regex pattern to match both formats
+            month_match = re.search(r'(?:calendar view|show all bookings in)\s+(\w+)', message.lower())
             if not month_match:
-                return "Please specify a month, e.g., '@floor10roombooking show all bookings in December'"
+                return "Please specify a month, e.g., '/calendar December' or '/calendar Dec'"
             
             month_str = month_match.group(1)
-            month_names = {month.lower(): i for i, month in enumerate(calendar.month_name) if month}
+            
+            # Create dictionary for both full and abbreviated month names
+            month_names = {}
+            for i, month in enumerate(calendar.month_name):
+                if month:  # Skip empty string at index 0
+                    month_names[month.lower()] = i
+                    # Add three-letter abbreviation
+                    month_names[month[:3].lower()] = i
             
             if month_str not in month_names:
-                return "Invalid month name. Please use full month names (e.g., December)"
+                return "Invalid month name. Please use full month names (e.g., December) or abbreviations (e.g., Dec)"
             
             month_num = month_names[month_str]
             current_year = datetime.now().year

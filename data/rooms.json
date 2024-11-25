@@ -509,17 +509,8 @@
         "contact_name": "N/A"
       },
       {
-        "start_time": "2024-12-07T14:00:00",
-        "end_time": "2024-12-07T16:00:00",
-        "duration_minutes": 120,
-        "event_name": "nwg ncf customer playback",
-        "meeting_type": "client",
-        "contact_name": "john smith",
-        "user_id": "U080SQZMX1T"
-      },
-      {
-        "start_time": "2024-11-23T14:00:00",
-        "end_time": "2024-11-23T16:00:00",
+        "start_time": "2024-11-22T14:00:00",
+        "end_time": "2024-11-22T16:00:00",
         "duration_minutes": 120,
         "event_name": "team sync",
         "meeting_type": "internal",
@@ -527,12 +518,57 @@
         "user_id": "U080SQZMX1T"
       },
       {
-        "start_time": "2024-12-21T14:00:00",
-        "end_time": "2024-12-21T16:00:00",
+        "start_time": "2024-11-29T14:00:00",
+        "end_time": "2024-11-29T16:00:00",
         "duration_minutes": 120,
         "event_name": "team sync",
         "meeting_type": "internal",
         "contact_name": "john smith",
+        "user_id": "U080SQZMX1T"
+      },
+      {
+        "start_time": "2024-12-20T14:00:00",
+        "end_time": "2024-12-20T16:00:00",
+        "duration_minutes": 120,
+        "event_name": "team sync",
+        "meeting_type": "internal",
+        "contact_name": "john smith",
+        "user_id": "U080SQZMX1T"
+      },
+      {
+        "start_time": "2024-12-17T13:00:00",
+        "end_time": "2024-12-17T15:00:00",
+        "duration_minutes": 120,
+        "event_name": "mehmet thomas catch up",
+        "meeting_type": "internal",
+        "contact_name": "mehmet john evans",
+        "user_id": "U080SQ531141ZMX1T"
+      },
+      {
+        "start_time": "2024-11-26T12:00:00",
+        "end_time": "2024-11-26T14:30:00",
+        "duration_minutes": 150,
+        "event_name": "testing",
+        "meeting_type": "internal",
+        "contact_name": "mehmet",
+        "user_id": "U080SQZMX1T"
+      },
+      {
+        "start_time": "2024-11-26T15:00:00",
+        "end_time": "2024-11-26T16:01:00",
+        "duration_minutes": 61,
+        "event_name": "test",
+        "meeting_type": "internal",
+        "contact_name": "mehmet",
+        "user_id": "U080SQZMX1T"
+      },
+      {
+        "start_time": "2024-11-26T17:31:00",
+        "end_time": "2024-11-26T17:59:00",
+        "duration_minutes": 28,
+        "event_name": "testing",
+        "meeting_type": "internal",
+        "contact_name": "mehmet",
         "user_id": "U080SQZMX1T"
       }
     ]
@@ -909,6 +945,51 @@
         "event_name": "HLS Townhall",
         "meeting_type": "internal",
         "contact_name": "Matthewcleary@ibm.com"
+      },
+      {
+        "start_time": "2024-11-22T14:00:00",
+        "end_time": "2024-11-22T16:00:00",
+        "duration_minutes": 120,
+        "event_name": "team sync",
+        "meeting_type": "internal",
+        "contact_name": "john smith",
+        "user_id": "U080SQZMX1T"
+      },
+      {
+        "start_time": "2024-11-29T14:00:00",
+        "end_time": "2024-11-29T16:00:00",
+        "duration_minutes": 120,
+        "event_name": "team sync",
+        "meeting_type": "internal",
+        "contact_name": "john smith",
+        "user_id": "U080SQZMX1T"
+      },
+      {
+        "start_time": "2024-12-06T14:00:00",
+        "end_time": "2024-12-06T16:00:00",
+        "duration_minutes": 120,
+        "event_name": "team sync",
+        "meeting_type": "internal",
+        "contact_name": "john smith",
+        "user_id": "U080SQZMX1T"
+      },
+      {
+        "start_time": "2024-12-13T14:00:00",
+        "end_time": "2024-12-13T16:00:00",
+        "duration_minutes": 120,
+        "event_name": "team sync",
+        "meeting_type": "internal",
+        "contact_name": "john smith",
+        "user_id": "U080SQZMX1T"
+      },
+      {
+        "start_time": "2024-12-20T14:00:00",
+        "end_time": "2024-12-20T16:00:00",
+        "duration_minutes": 120,
+        "event_name": "team sync",
+        "meeting_type": "internal",
+        "contact_name": "john smith",
+        "user_id": "U080SQZMX1T"
       }
     ]
   },
@@ -1092,24 +1173,6 @@
         "event_name": "natwest",
         "meeting_type": "client",
         "contact_name": "james"
-      },
-      {
-        "start_time": "2024-11-16T14:00:00",
-        "end_time": "2024-11-16T15:00:00",
-        "duration_minutes": 60,
-        "event_name": "Client Meeting with Barclays",
-        "meeting_type": "client",
-        "contact_name": "John Smith",
-        "user_id": "U080SQZMX1T"
-      },
-      {
-        "start_time": "2024-11-16T14:00:00",
-        "end_time": "2024-11-16T15:00:00",
-        "duration_minutes": 60,
-        "event_name": "Client Meeting with Barclays",
-        "meeting_type": "client",
-        "contact_name": "John Smith",
-        "user_id": "U080SQZMX1T"
       }
     ]
   },
