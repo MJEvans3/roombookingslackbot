@@ -315,7 +315,7 @@ class MessageHandler:
         room_match = re.search(r'book recurring\s+(nest|treehouse|lighthouse|raven|hummingbird)', message)
         date_match = re.search(r'(?:book\s+recurring\s+\w+,\s*)(\d{1,2}(?:st|nd|rd|th)?\s+(?:of\s+)?[A-Za-z]+|\d{1,2}/\d{1,2}(?:/\d{4})?|today|tomorrow)', message)
         end_date_match = re.search(r',\s*(\d{1,2}(?:st|nd|rd|th)?\s+(?:of\s+)?[A-Za-z]+|\d{1,2}/\d{1,2}(?:/\d{4})?|today|tomorrow)', message)
-        frequency_match = re.search(r',\s*(daily|weekly|biweekly|monthly)', message)
+        frequency_match = re.search(r',\s*(daily|weekly|bi[- ]?weekly|biweekly|monthly)', message.lower())
         time_match = re.search(r',\s*(\d{1,2}(?:[:.]\d{2})?(?:am|pm)|\d{2}[:.]\d{2})', message)
         duration_match = re.search(r'(?:,\s*)((?:\d+\s*(?:h|m|hours?|minutes?|min)(?:\s*(?:and|,)?\s*\d+\s*(?:h|m|hours?|minutes?|min))?)|(?:\d+\s*(?:h|m)))', message)
         event_match = re.search(r',\s*([^,]+?)\s*,\s*(?:internal|client)', message)
@@ -342,7 +342,7 @@ class MessageHandler:
         room_id = room_match.group(1).upper()
         start_date_str = date_match.group(1)
         end_date_str = end_date_match.group(1)
-        frequency = frequency_match.group(1)
+        frequency = frequency_match.group(1).replace(' ', '').replace('-', '')
         time_str = time_match.group(1)
 
         # Parse dates and time

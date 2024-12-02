@@ -35,7 +35,9 @@ Example booking commands:
 - Recurring booking: `/book recurring nest, 22nd Nov, 22nd Dec, weekly, 2pm, 2 hours, Team Sync, internal, John Smith`
 
 *Date formats accepted:* 'today', 'tomorrow', '28th Nov', '22nd of November', '19/12', '19/12/2024'
-*Supported Frequencies:* daily, weekly, biweekly, monthly
+
+*Supported Frequencies:* 'daily', 'weekly', 'biweekly', 'monthly'
+
 *Duration formats accepted:*
 - Hours: '3h', '3 h', '3 hours'
 - Minutes: '45m', '45 m', '45 minutes'
