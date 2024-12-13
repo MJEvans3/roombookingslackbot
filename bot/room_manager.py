@@ -5,10 +5,11 @@ import os
 import logging
 
 class Room:
-    def __init__(self, room_id: str, name: str, capacity: int):
+    def __init__(self, room_id: str, name: str, capacity: int, floor: int):
         self.room_id = room_id
         self.name = name
         self.capacity = capacity
+        self.floor = floor
         self.bookings: List[Dict] = []
 
     def to_dict(self) -> dict:
@@ -16,6 +17,7 @@ class Room:
             "room_id": self.room_id,
             "name": self.name,
             "capacity": self.capacity,
+            "floor": self.floor,
             "bookings": self.bookings
         }
 
@@ -25,7 +27,8 @@ class Room:
         return cls(
             room_id=data["room_id"],
             name=data["name"],
-            capacity=data["capacity"]
+            capacity=data["capacity"],
+            floor=data.get("floor")
         )
 
 class RoomManager:
@@ -52,18 +55,19 @@ class RoomManager:
                         room = Room(
                             room_id=room_id,
                             name=room_data["name"],
-                            capacity=room_data["capacity"]
+                            capacity=room_data["capacity"],
+                            floor=room_data.get("floor")
                         )
                         room.bookings = room_data.get("bookings", [])
                         self.rooms[room.room_id] = room
             else:
-                # Create default rooms
+                # Create default rooms with floor set to 10
                 default_rooms = [
-                    Room("NEST", "The Nest", 30),
-                    Room("TREEHOUSE", "The Treehouse", 15),
-                    Room("LIGHTHOUSE", "The Lighthouse", 15),
-                    Room("RAVEN", "Raven", 4),
-                    Room("HUMMINGBIRD", "Hummingbird", 4)
+                    Room("NEST", "The Nest", 30, 10),
+                    Room("TREEHOUSE", "The Treehouse", 15, 10),
+                    Room("LIGHTHOUSE", "The Lighthouse", 15, 10),
+                    Room("RAVEN", "Raven", 4, 10),
+                    Room("HUMMINGBIRD", "Hummingbird", 4, 10)
                 ]
                 for room in default_rooms:
                     self.rooms[room.room_id] = room

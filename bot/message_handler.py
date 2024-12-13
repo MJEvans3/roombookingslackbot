@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time
 import re
 from typing import List
 from utils.date_utils import parse_date_time
@@ -10,10 +10,43 @@ class MessageHandler:
         self.room_manager = room_manager
         
     def handle_message(self, message: str, user_id: str) -> str:
-        """Process incoming Slack messages and return appropriate responses."""
-        logging.debug(f"Received message: '{message}' from user: {user_id}")
+        """Process incoming messages and return appropriate responses."""
         message = message.lower().strip()
-        logging.debug(f"Processed message: '{message}'")
+        logging.debug(f"Processing message: '{message}'")
+
+        # Handle list available rooms command
+        if "list available rooms" in message:
+            # Extract date if present
+            date_match = re.search(r'for\s+(\d{1,2}(?:st|nd|rd|th)?\s+(?:of\s+)?[A-Za-z]+|\d{1,2}/\d{1,2}(?:/\d{4})?|today|tomorrow)', message)
+            if not date_match:
+                return "Please specify a date."
+            
+            date_str = date_match.group(1)
+            target_date = parse_date_time(date_str, "")
+            if not target_date:
+                return "Invalid date format. Please use a format like 'tomorrow' or '22/11/23'."
+            
+            response = [f"Available rooms for {target_date.strftime('%B %d')}:"]
+            
+            for room in sorted(self.room_manager.rooms.values(), key=lambda x: x.name):
+                available_slots = self.room_manager.get_available_slots(room.room_id, target_date)
+                if available_slots:
+                    response.append(f"\n{room.name} (Capacity: {room.capacity}):")
+                    for start, end in available_slots:
+                        response.append(f"• {start.strftime('%I:%M %p')} - {end.strftime('%I:%M %p')}")
+            
+            if len(response) == 1:  # Only has the header
+                return f"No available rooms found for {target_date.strftime('%B %d')}."
+            
+            return "\n".join(response)
+        
+        # Handle other list rooms commands
+        elif message.startswith("list rooms on floor"):
+            try:
+                floor_number = int(message.split()[-1])
+                return self._handle_list_rooms(floor_number)
+            except ValueError:
+                return "Invalid floor number. Please enter a valid number."
         
         # Handle cancellation with booking number(s)
         cancel_match = re.match(r'cancel booking[s]?\s+#?(\d+(?:\s*,\s*\d+)*)', message)
@@ -24,10 +57,6 @@ class MessageHandler:
             return self._handle_booking_cancellation(user_id, cancel_all=True)
         elif message == 'cancel booking':
             return self._handle_cancellation_request(user_id)
-        elif message == 'list rooms':
-            return self._handle_list_rooms()
-        elif message.startswith('list available'):
-            return self._handle_list_available(message)
         elif message.startswith('book '):
             if message.startswith('book recurring '):
                 return self._handle_recurring_booking_request(message, user_id)
@@ -167,54 +196,51 @@ class MessageHandler:
         
         return "\n".join(booking_list)
 
-    def _handle_list_rooms(self) -> str:
-        """Handle request to list all rooms."""
-        rooms = self.room_manager.get_all_rooms()
-        response = ["Available rooms:"]
-        for room in rooms:
-            response.append(f"• {room.name} (Capacity: {room.capacity})")
-        return "\n".join(response)
+    def _handle_list_rooms(self, floor_number: int) -> str:
+        """Handle request to list all rooms on a specific floor."""
+        rooms_on_floor = [room for room in self.room_manager.rooms.values() if room.floor == floor_number]
+        
+        if not rooms_on_floor:
+            return f"No rooms found on floor {floor_number}."
+        
+        room_list = "\n".join([f"{room.name} (Capacity: {room.capacity})" for room in rooms_on_floor])
+        return f"Rooms on floor {floor_number}:\n{room_list}"
 
     def _handle_list_available(self, message: str) -> str:
-        """Handle request to list available rooms for a specific time."""
-        # Extract date and time
-        date_match = re.search(r'for\s+(\d{1,2}(?:st|nd|rd|th)?\s+(?:of\s+)?[A-Za-z]+|\d{1,2}/\d{1,2}(?:/\d{4})?|today|tomorrow)', message)
-        time_match = re.search(r'(\d{1,2}(?::\d{2})?(?:am|pm)|\d{2}:\d{2})', message)
+        """Handle request to list available rooms for a specific time and floor."""
+        # Extract floor number
+        floor_match = re.search(r'(?:on )?floor\s+(\d+)', message)
+        if not floor_match:
+            return "Please specify a floor number. For example: '/rooms available 10 tomorrow'"
         
+        floor_number = int(floor_match.group(1))
+        floor_rooms = [room for room in self.room_manager.rooms.values() if room.floor == floor_number]
+        
+        if not floor_rooms:
+            return f"No rooms found on floor {floor_number}."
+        
+        # Extract date
+        date_match = re.search(r'for\s+(\d{1,2}(?:st|nd|rd|th)?\s+(?:of\s+)?[A-Za-z]+|\d{1,2}/\d{1,2}(?:/\d{4})?|today|tomorrow)', message)
         if not date_match:
-            return "Please specify a date. For example: 'list available rooms for tomorrow'"
-            
-        # If no time specified, show availability for the whole day
-        if not time_match:
-            date_str = date_match.group(1)
-            date = parse_date_time(date_str, "9am")  # Use 9am as default
-            if not date:
-                return "I couldn't understand the date. Please try again."
-                
-            response = [f"Available rooms for {date.strftime('%B %d')}:"]
-            for room in self.room_manager.get_all_rooms():
-                slots = self.room_manager.get_available_slots(room.room_id, date)
-                if slots:
-                    slot_times = [
-                        f"{slot[0].strftime('%I:%M %p')} - {slot[1].strftime('%I:%M %p')}"
-                        for slot in slots
-                    ]
-                    response.append(f"\n{room.name}:")
-                    response.extend([f"• {slot}" for slot in slot_times])
-            return "\n".join(response)
-            
-        # Check availability for specific time
-        start_time = parse_date_time(date_match.group(1), time_match.group(1))
-        if not start_time:
-            return "I couldn't understand the date and time. Please try again."
-            
-        available_rooms = self.room_manager.list_available_rooms(start_time, 60)  # Default 1 hour
-        if not available_rooms:
-            return f"No rooms available at {start_time.strftime('%B %d %I:%M %p')}"
-            
-        response = [f"Available rooms for {start_time.strftime('%B %d at %I:%M %p')}:"]
-        for room in available_rooms:
-            response.append(f"• {room.name} (Capacity: {room.capacity})")
+            return "Please specify a date. For example: '/rooms available 10 tomorrow'"
+        
+        date_str = date_match.group(1)
+        target_date = parse_date_time(date_str, "9:00")  # Use 9:00 as default time
+        if not target_date:
+            return "Invalid date format. Please use a format like 'tomorrow' or '22/11/23'."
+        
+        response = [f"Available rooms on floor {floor_number} for {target_date.strftime('%B %d')}:"]
+        
+        for room in sorted(floor_rooms, key=lambda x: x.name):
+            available_slots = self.room_manager.get_available_slots(room.room_id, target_date)
+            if available_slots:
+                response.append(f"\n{room.name} (Capacity: {room.capacity}):")
+                for start, end in available_slots:
+                    response.append(f"• {start.strftime('%I:%M %p')} - {end.strftime('%I:%M %p')}")
+        
+        if len(response) == 1:  # Only has the header
+            response.append("No rooms available on this date.")
+        
         return "\n".join(response)
 
     def _format_alternative_suggestions(self, alternatives: dict) -> str:
@@ -465,17 +491,18 @@ class MessageHandler:
         try:
             # Parse month from message
             month_str = message.replace('calendar view ', '').strip()
+            
+            # Room abbreviations mapping
+            room_abbr = {
+                "NEST": "Nest",
+                "TREEHOUSE": "Tree",
+                "LIGHTHOUSE": "Lght",
+                "RAVEN": "Ravn",
+                "HUMMINGBIRD": "Hmng"
+            }
+
             month_names = {month.lower(): i for i, month in enumerate(calendar.month_name) if month}
             month_abbr = {month.lower(): i for i, month in enumerate(calendar.month_abbr) if month}
-            
-            # Room name abbreviations
-            room_abbr = {
-                "LIGHTHOUSE": "Lght",
-                "TREEHOUSE": "Tree",
-                "RAVEN": "Ravn",
-                "HUMMINGBIRD": "Hmng",
-                "NEST": "Nest"
-            }
             
             month_str = month_str.lower()
             if month_str in month_names:
@@ -484,14 +511,15 @@ class MessageHandler:
                 month_num = month_abbr[month_str]
             else:
                 return "Please specify a valid month, e.g., 'December' or 'Dec'"
-            
+
             current_year = datetime.now().year
             if datetime.now().month > month_num:
                 current_year += 1
 
             # First, create detailed bookings view
             all_bookings = []
-            for room_id, room in self.room_manager.rooms.items():
+            
+            for room in self.room_manager.rooms.values():  # Iterate through all rooms
                 for booking in room.bookings:
                     booking_start = datetime.fromisoformat(booking['start_time'])
                     if booking_start.month == month_num and booking_start.year == current_year:
@@ -499,7 +527,7 @@ class MessageHandler:
                             'date': booking_start,
                             'start': booking_start,
                             'end': datetime.fromisoformat(booking['end_time']),
-                            'room': room.name,
+                            'room': room_abbr[room.room_id],  # Use room abbreviation
                             'event': booking['event_name'],
                             'type': booking['meeting_type'],
                             'contact': booking['contact_name']
@@ -509,7 +537,7 @@ class MessageHandler:
             all_bookings.sort(key=lambda x: (x['date'].date(), x['start'].time()))
 
             # Create response with detailed bookings
-            response = [f"Detailed Bookings for {calendar.month_name[month_num]} {current_year}:"]
+            response = [f"Detailed Bookings - {calendar.month_name[month_num]} {current_year}:"]
             current_date = None
             
             for booking in all_bookings:
@@ -525,7 +553,7 @@ class MessageHandler:
 
             # Add calendar view header
             response.extend([
-                f"\n📅 Calendar for {calendar.month_name[month_num]} {current_year}\n",
+                f"\n📅 Calendar - {calendar.month_name[month_num]} {current_year}\n",
                 "```"
             ])
             
@@ -548,14 +576,14 @@ class MessageHandler:
                     day = week[day_idx]
                     if day == 0:
                         # Empty day
-                        for i in range(20):  # Increased to match new max lines
+                        for i in range(20):
                             week_lines[i] += " " * CELL_WIDTH
                         continue
                     
                     # Get all bookings for this day
                     date = datetime(current_year, month_num, day)
                     day_bookings = []
-                    for room_id, room in self.room_manager.rooms.items():
+                    for room in self.room_manager.rooms.values():
                         for booking in room.bookings:
                             booking_start = datetime.fromisoformat(booking['start_time'])
                             booking_end = datetime.fromisoformat(booking['end_time'])
@@ -563,16 +591,16 @@ class MessageHandler:
                                 day_bookings.append({
                                     'start': booking_start,
                                     'end': booking_end,
-                                    'room': room_abbr[room_id]
+                                    'room': room_abbr[room.room_id]
                                 })
                     
                     # Sort bookings by time
                     day_bookings.sort(key=lambda x: x['start'])
                     
                     # Format day cell with asterisks
-                    week_lines[0] += f"*{day}*".ljust(CELL_WIDTH)  # First line is day number with asterisks
+                    week_lines[0] += f"*{day}*".ljust(CELL_WIDTH)
                     
-                    # Add each booking on its own line - removed the limit
+                    # Add each booking on its own line
                     for i, booking in enumerate(day_bookings):
                         booking_str = (f"{booking['start'].strftime('%H:%M')}-"
                                      f"{booking['end'].strftime('%H:%M')} "
@@ -581,7 +609,7 @@ class MessageHandler:
                         max_lines_used = max(max_lines_used, i + 2)
                     
                     # Fill remaining lines with spaces
-                    for i in range(len(day_bookings) + 1, 20):  # Increased to match new max lines
+                    for i in range(len(day_bookings) + 1, 20):
                         week_lines[i] += " " * CELL_WIDTH
                 
                 # Add non-empty lines to response
@@ -594,4 +622,6 @@ class MessageHandler:
         except Exception as e:
             logging.error(f"Error in _handle_show_monthly_bookings: {str(e)}")
             return "Sorry, I encountered an error while creating the calendar view. Please try again."
+    
+
     

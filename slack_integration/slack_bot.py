@@ -73,33 +73,41 @@ class SlackBot:
         user_id = command["user_id"]
         
         if command_type == "/book":
-            if not text:
-                return (
-                    "Please use one of these formats:\n\n"
-                    "*Single Booking:*\n"
-                    "`/book [room], [date], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
-                    "*Recurring Booking:*\n"
-                    "`/book recurring [room], [start date], [end date], [frequency], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
-                    "*Examples:*\n"
-                    "• `/book nest, tomorrow, 2pm, 2 hours, Team Meeting, internal, John Smith`\n"
-                    "• `/book recurring nest, 22nd Nov, 22nd Dec, weekly, 2pm, 2 hours, Team Sync, internal, John Smith`\n"
-                    "*Date formats:* 'today', 'tomorrow', '28th Nov', '22nd of November', '19/12', '19/12/2024'\n"
-                    "*Supported Frequencies:* daily, weekly, biweekly, monthly\n"
-                    "*Duration formats accepted:*\n"
-                    "• Hours: '3h', '3 h', '3 hours'\n"
-                    "• Minutes: '45m', '45 m', '45 minutes'\n"
-                    "• Combined: '2 hours 30 minutes', '2h 30m'\n\n"
-                    )
-            if text.startswith('recurring '):
-                return self.message_handler.handle_message(f"book {text}", user_id)
-            return self.message_handler.handle_message(f"book {text}", user_id)
+            # if not text:
+            #     return (
+            #         "Please use one of these formats:\n\n"
+            #         "*Single Booking:*\n"
+            #         "`/book [room], [date], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
+            #         "*Recurring Booking:*\n"
+            #         "`/book recurring [room], [start date], [end date], [frequency], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
+            #         "*Examples:*\n"
+            #         "• `/book nest, tomorrow, 2pm, 2 hours, Team Meeting, internal, John Smith`\n"
+            #         "• `/book recurring nest, 22nd Nov, 22nd Dec, weekly, 2pm, 2 hours, Team Sync, internal, John Smith`\n"
+            #         "*Date formats:* 'today', 'tomorrow', '28th Nov', '22nd of November', '19/12', '19/12/2024'\n"
+            #         "*Supported Frequencies:* daily, weekly, biweekly, monthly\n"
+            #         "*Duration formats accepted:*\n"
+            #         "• Hours: '3h', '3 h', '3 hours'\n"
+            #         "• Minutes: '45m', '45 m', '45 minutes'\n"
+            #         "• Combined: '2 hours 30 minutes', '2h 30m'\n\n"
+            #         )
+            # if text.startswith('recurring '):
+            #     return self.message_handler.handle_message(f"book {text}", user_id)
+            # return self.message_handler.handle_message(f"book {text}", user_id)
+            return "Bookings will be made available from the 1st of January in this channel"
+    
         
         elif command_type == "/rooms":
             if not text:
-                return self.message_handler.handle_message("list rooms", user_id)
+                # Get list of all rooms
+                rooms = self.room_manager.get_all_rooms()
+                response = ["Available Rooms:"]
+                for room in sorted(rooms, key=lambda x: x.name):
+                    response.append(f"• {room.name} (Capacity: {room.capacity})")
+                return "\n".join(response)
             elif text.startswith('available '):
-                return self.message_handler.handle_message(f"list available rooms for {text[10:]}", user_id)
-            return "Invalid format. Use `/rooms` or `/rooms available [date]`"
+                date = text[len('available '):].strip()
+                return self.message_handler.handle_message(f"list available rooms for {date}", user_id)
+            return "Use `/rooms` or `/rooms available [date]`."
         
         elif command_type == "/mybookings":
             if not text:
@@ -113,10 +121,9 @@ class SlackBot:
         
         elif command_type == "/calendar":
             if not text:
-                return "Please specify a month, e.g., `/calendar December`"
+                return "Please specify month, e.g., `/calendar December`"
             return self.message_handler.handle_message(f"calendar view {text}", user_id)
         
-        return "Unknown command"
 
     def start(self):
         """Start the Slack bot."""
@@ -131,10 +138,10 @@ class SlackBot:
             "*Begin Booking Process:*\n"
             "• `/book` - Single bookings or recurring bookings\n"
             "*Calendar View*\n"
-            "• `/calendar [month]` - View calendar for a month\n"
+            "• `/calendar [month]` - View calendar for a specific month\n"
             "*Other Commands:*\n"
-            "• `/rooms available [date]` - Check room availability\n"
             "• `/rooms` - List all rooms\n"
+            "• `/rooms available [date]` - Check room availability\n"
             "• `/mybookings` - View your bookings\n"
             "• `/mybookings cancel [number(s)]` - Cancel specific bookings after viewing them\n"
         )

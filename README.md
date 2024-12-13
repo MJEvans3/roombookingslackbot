@@ -23,7 +23,7 @@ A Slack bot that helps manage meeting room bookings for Floor 10. The bot allows
 - `/book` - Start a booking process
   - Single booking format: `/book [room], [date], [time], [duration], [event details], [internal/client], [Full Contact Name]`
   - Recurring booking format: `/book recurring [room], [start date], [end date], [frequency], [time], [duration], [event details], [internal/client], [Full Contact Name]`
-- `/rooms` - List all available rooms
+- `/rooms` - List all rooms 
 - `/rooms available [date]` - Show available rooms for a specific date
 - `/mybookings` - View your bookings
 - `/mybookings cancel [number(s)]` - Cancel specific bookings
@@ -33,6 +33,11 @@ A Slack bot that helps manage meeting room bookings for Floor 10. The bot allows
 Example booking commands:
 - Single booking: `/book nest, tomorrow, 2pm, 2 hours, Team Meeting, internal, John Smith`
 - Recurring booking: `/book recurring nest, 22nd Nov, 22nd Dec, weekly, 2pm, 2 hours, Team Sync, internal, John Smith`
+
+Example room and calendar commands:
+- View rooms on floor 10: `/rooms`
+- Check availability: `/rooms available tomorrow`
+- View calendar for December: `/calendar December`
 
 *Date formats accepted:* 'today', 'tomorrow', '28th Nov', '22nd of November', '19/12', '19/12/2024'
 
@@ -66,6 +71,7 @@ Example booking commands:
      - `chat:write`
      - `app_mentions:read`
      - `channels:read`
+     - `commands`
    - Install the app to your workspace
    - Copy your Bot Token and App Token
 
@@ -79,7 +85,7 @@ Example booking commands:
      SLACK_BOT_TOKEN = "your-bot-token"  # Replace with your actual bot token
      SLACK_APP_TOKEN = "your-app-token"  # Replace with your actual app token
      ```
-   Note: Leave `config_template.py` unchanged. The copy you created (`config.py`) will be automatically ignored by git to protect your tokens.
+   Note: Leave `config_template.py` unchanged. 
 
 
 5. Run the bot:
