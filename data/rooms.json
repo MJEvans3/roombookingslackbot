@@ -531,7 +531,7 @@
         "duration_minutes": 600,
         "event_name": "Internal event - SAP SF Functional Bootcamp",
         "meeting_type": "internal",
-        "contact_name": "Szilvia Sós-Temesi"
+        "contact_name": "Szilvia S\u00f3s-Temesi"
       },
       {
         "start_time": "2025-01-28T08:00:00",
@@ -539,7 +539,7 @@
         "duration_minutes": 600,
         "event_name": "Internal event - SAP SF Functional Bootcamp",
         "meeting_type": "internal",
-        "contact_name": "Szilvia Sós-Temesi"
+        "contact_name": "Szilvia S\u00f3s-Temesi"
       },
       {
         "start_time": "2025-01-29T09:00:00",
@@ -603,7 +603,7 @@
         "duration_minutes": 600,
         "event_name": "Internal event - SAP SF Functional Bootcamp",
         "meeting_type": "internal",
-        "contact_name": "Szilvia Sós-Temesi"
+        "contact_name": "Szilvia S\u00f3s-Temesi"
       },
       {
         "start_time": "2025-02-20T14:00:00",
@@ -1313,6 +1313,15 @@
         "event_name": "Accessibility Lab - DWP",
         "meeting_type": "client",
         "contact_name": "Kelly Anderson"
+      },
+      {
+        "start_time": "2025-01-07T14:30:00",
+        "end_time": "2025-01-07T16:00:00",
+        "duration_minutes": 90,
+        "event_name": "helloix leadership retro",
+        "meeting_type": "internal",
+        "contact_name": "eleanor barron",
+        "user_id": "W014VKYFWR5"
       }
     ]
   },

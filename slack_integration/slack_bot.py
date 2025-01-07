@@ -73,27 +73,26 @@ class SlackBot:
         user_id = command["user_id"]
         
         if command_type == "/book":
-            # if not text:
-            #     return (
-            #         "Please use one of these formats:\n\n"
-            #         "*Single Booking:*\n"
-            #         "`/book [room], [date], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
-            #         "*Recurring Booking:*\n"
-            #         "`/book recurring [room], [start date], [end date], [frequency], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
-            #         "*Examples:*\n"
-            #         "• `/book nest, tomorrow, 2pm, 2 hours, Team Meeting, internal, John Smith`\n"
-            #         "• `/book recurring nest, 22nd Nov, 22nd Dec, weekly, 2pm, 2 hours, Team Sync, internal, John Smith`\n"
-            #         "*Date formats:* 'today', 'tomorrow', '28th Nov', '22nd of November', '19/12', '19/12/2024'\n"
-            #         "*Supported Frequencies:* daily, weekly, biweekly, monthly\n"
-            #         "*Duration formats accepted:*\n"
-            #         "• Hours: '3h', '3 h', '3 hours'\n"
-            #         "• Minutes: '45m', '45 m', '45 minutes'\n"
-            #         "• Combined: '2 hours 30 minutes', '2h 30m'\n\n"
-            #         )
-            # if text.startswith('recurring '):
-            #     return self.message_handler.handle_message(f"book {text}", user_id)
-            # return self.message_handler.handle_message(f"book {text}", user_id)
-            return "Bookings will be made available from the 1st of January in this channel"
+            if not text:
+                return (
+                        "Please use one of these formats:\n\n"
+                        "*Single Booking:*\n"
+                        "`/book [room], [date], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
+                        "*Recurring Booking:*\n"
+                        "`/book recurring [room], [start date], [end date], [frequency], [time], [duration], [event details], [internal/client], [Full Contact Name]`\n\n"
+                        "*Examples:*\n"
+                        "• `/book nest, tomorrow, 2pm, 2 hours, Team Meeting, internal, John Smith`\n"
+                        "• `/book recurring nest, 22nd Nov, 22nd Dec, weekly, 2pm, 2 hours, Team Sync, internal, John Smith`\n"
+                        "*Date formats:* 'today', 'tomorrow', '28th Nov', '22nd of November', '19/12', '19/12/2024'\n"
+                        "*Supported Frequencies:* daily, weekly, biweekly, monthly\n"
+                        "*Duration formats accepted:*\n"
+                        "• Hours: '3h', '3 h', '3 hours'\n"
+                        "• Minutes: '45m', '45 m', '45 minutes'\n"
+                        "• Combined: '2 hours 30 minutes', '2h 30m'\n\n"
+                        )
+            if text.startswith('recurring '):
+                return self.message_handler.handle_message(f"book {text}", user_id)
+            return self.message_handler.handle_message(f"book {text}", user_id)
     
         
         elif command_type == "/rooms":
