@@ -37,6 +37,8 @@ class SlackBot:
             client.send_socket_mode_response(SocketModeResponse(envelope_id=req.envelope_id))
             command = req.payload
             
+            user_command = command["command"] + " " + command["text"].strip()  # Capture the user's command
+            
             try:
                 response = self._handle_slash_command(command)
                 
@@ -44,7 +46,7 @@ class SlackBot:
                 self.web_client.chat_postEphemeral(
                     channel=command["channel_id"],
                     user=command["user_id"],
-                    text=response
+                    text=f"You typed: `{user_command}`\n\n{response}"  # Include the user's command
                 )
                 
             except Exception as e:
