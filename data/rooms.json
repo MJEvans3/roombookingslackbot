@@ -6,396 +6,36 @@
     "floor": 10,
     "bookings": [
       {
-        "start_time": "2024-11-04T10:00:00",
-        "end_time": "2024-11-04T12:00:00",
-        "duration_minutes": 120,
-        "event_name": "BP account team meeting",
-        "meeting_type": "client",
-        "contact_name": "Mathew Dawson"
-      },
-      {
-        "start_time": "2024-11-04T13:00:00",
-        "end_time": "2024-11-04T18:00:00",
-        "duration_minutes": 300,
-        "event_name": "Lloyds Team Meeting",
-        "meeting_type": "client",
-        "contact_name": "Michelle Coyle"
-      },
-      {
-        "start_time": "2024-11-05T09:00:00",
-        "end_time": "2024-11-05T13:30:00",
-        "duration_minutes": 270,
-        "event_name": "Lloyds Team Meeting",
-        "meeting_type": "client",
-        "contact_name": "Michelle Coyle"
-      },
-      {
-        "start_time": "2024-11-05T13:30:00",
-        "end_time": "2024-11-05T14:00:00",
-        "duration_minutes": 30,
-        "event_name": "AHC ix-CT",
-        "meeting_type": "internal",
-        "contact_name": "James Porter"
-      },
-      {
-        "start_time": "2024-11-06T09:30:00",
-        "end_time": "2024-11-06T12:30:00",
-        "duration_minutes": 180,
-        "event_name": "IX + DTT Data Platform Event",
-        "meeting_type": "client",
-        "contact_name": "Emma Flinter"
-      },
-      {
-        "start_time": "2024-11-06T12:30:00",
-        "end_time": "2024-11-06T17:00:00",
-        "duration_minutes": 270,
-        "event_name": "Thames Water Rehearsal",
-        "meeting_type": "client",
-        "contact_name": "Liz Saunders"
-      },
-      {
-        "start_time": "2024-11-07T10:00:00",
-        "end_time": "2024-11-07T12:00:00",
-        "duration_minutes": 120,
-        "event_name": "Meeting with Maya Bhardwaj",
-        "meeting_type": "internal",
-        "contact_name": "Maya Bhardwaj"
-      },
-      {
-        "start_time": "2024-11-07T18:00:00",
-        "end_time": "2024-11-07T20:00:00",
-        "duration_minutes": 120,
-        "event_name": "Event",
-        "meeting_type": "internal",
-        "contact_name": "Nadia Jama / Adna Hashi"
-      },
-      {
-        "start_time": "2024-11-11T08:00:00",
-        "end_time": "2024-11-11T17:00:00",
+        "start_time": "2025-01-07T09:00:00",
+        "end_time": "2025-01-07T18:00:00",
         "duration_minutes": 540,
-        "event_name": "Client Workshop Meeting",
-        "meeting_type": "client",
-        "contact_name": "Amanda Phu"
+        "event_name": "All Day Workshop",
+        "meeting_type": "internal",
+        "contact_name": "Heather Bertram"
       },
       {
-        "start_time": "2024-11-12T11:00:00",
-        "end_time": "2024-11-12T14:00:00",
-        "duration_minutes": 180,
-        "event_name": "NHS App SCS Team day",
-        "meeting_type": "client",
-        "contact_name": "James Porter"
-      },
-      {
-        "start_time": "2024-11-13T09:00:00",
-        "end_time": "2024-11-13T15:30:00",
-        "duration_minutes": 390,
-        "event_name": "Thames Water",
-        "meeting_type": "client",
-        "contact_name": "Thames Water"
-      },
-      {
-        "start_time": "2024-11-14T15:30:00",
-        "end_time": "2024-11-14T18:00:00",
+        "start_time": "2025-01-08T12:00:00",
+        "end_time": "2025-01-08T14:30:00",
         "duration_minutes": 150,
-        "event_name": "Hello IX booking",
-        "meeting_type": "internal",
-        "contact_name": "Annie Vella"
-      },
-      {
-        "start_time": "2024-11-14T18:00:00",
-        "end_time": "2024-11-14T20:30:00",
-        "duration_minutes": 150,
-        "event_name": "Event",
-        "meeting_type": "internal",
-        "contact_name": "N/A"
-      },
-      {
-        "start_time": "2024-11-15T08:00:00",
-        "end_time": "2024-11-15T18:00:00",
-        "duration_minutes": 600,
-        "event_name": "Client Workshop Meeting",
+        "event_name": "BP Client Meeting",
         "meeting_type": "client",
-        "contact_name": "Amanda Phu"
+        "contact_name": "Susanne Jones"
       },
       {
-        "start_time": "2024-11-18T18:00:00",
-        "end_time": "2024-11-18T23:59:00",
-        "duration_minutes": 359,
-        "event_name": "Comms Sector Day",
-        "meeting_type": "client",
-        "contact_name": "Ellie Kovace"
-      },
-      {
-        "start_time": "2024-11-27T09:00:00",
-        "end_time": "2024-11-27T17:00:00",
-        "duration_minutes": 480,
-        "event_name": "NHS App N&M TEAM DAY",
-        "meeting_type": "client",
-        "contact_name": "Mel Hyde"
-      },
-      {
-        "start_time": "2024-12-03T09:00:00",
-        "end_time": "2024-12-03T14:30:00",
-        "duration_minutes": 330,
-        "event_name": "Account event",
-        "meeting_type": "client",
-        "contact_name": "Catherine Coupland"
-      },
-      {
-        "start_time": "2024-12-03T14:30:00",
-        "end_time": "2024-12-03T20:00:00",
-        "duration_minutes": 330,
-        "event_name": "HRTT Growth Event YP & Christmas Event",
-        "meeting_type": "client",
-        "contact_name": "Ajay Pink, James King"
-      },
-      {
-        "start_time": "2024-12-04T08:00:00",
-        "end_time": "2024-12-04T15:00:00",
-        "duration_minutes": 420,
-        "event_name": "Client Event",
-        "meeting_type": "client",
-        "contact_name": "Irene Loh"
-      },
-      {
-        "start_time": "2024-12-04T15:00:00",
-        "end_time": "2024-12-04T16:00:00",
-        "duration_minutes": 60,
-        "event_name": "Gen AI Society x PwDA",
-        "meeting_type": "client",
-        "contact_name": "Kyle Collins"
-      },
-      {
-        "start_time": "2024-12-04T16:30:00",
-        "end_time": "2024-12-04T20:00:00",
-        "duration_minutes": 210,
-        "event_name": "Data Services First Wednesdays Winter Social",
-        "meeting_type": "social",
-        "contact_name": "Rhea Warrier"
-      },
-      {
-        "start_time": "2024-12-05T08:00:00",
-        "end_time": "2024-12-05T15:00:00",
-        "duration_minutes": 420,
-        "event_name": "Client Event",
-        "meeting_type": "client",
-        "contact_name": "Irene Loh"
-      },
-      {
-        "start_time": "2024-12-05T15:30:00",
-        "end_time": "2024-12-05T17:30:00",
+        "start_time": "2025-01-09T13:00:00",
+        "end_time": "2025-01-09T15:00:00",
         "duration_minutes": 120,
-        "event_name": "DALAS",
-        "meeting_type": "team",
-        "contact_name": "Madelaine Curry"
-      },
-      {
-        "start_time": "2024-12-05T17:30:00",
-        "end_time": "2024-12-05T20:00:00",
-        "duration_minutes": 150,
-        "event_name": "Scottish Power Christmas party",
-        "meeting_type": "social",
-        "contact_name": "Georgia Argent"
-      },
-      {
-        "start_time": "2024-12-06T08:00:00",
-        "end_time": "2024-12-06T17:00:00",
-        "duration_minutes": 540,
-        "event_name": "Oracle training Event",
-        "meeting_type": "training",
-        "contact_name": "Lubica Sosovickova"
-      },
-      {
-        "start_time": "2024-12-10T10:00:00",
-        "end_time": "2024-12-10T11:00:00",
-        "duration_minutes": 60,
-        "event_name": "Gen AI Soc | Watsonx.governance",
-        "meeting_type": "training",
-        "contact_name": "Kyle Collins"
-      },
-      {
-        "start_time": "2024-12-10T12:00:00",
-        "end_time": "2024-12-10T14:00:00",
-        "duration_minutes": 120,
-        "event_name": "MakeHerStory Public Event",
-        "meeting_type": "public",
-        "contact_name": "Andreea Okpala"
-      },
-      {
-        "start_time": "2024-12-10T14:00:00",
-        "end_time": "2024-12-10T15:00:00",
-        "duration_minutes": 60,
-        "event_name": "HelloiX Insight into Design",
-        "meeting_type": "client",
-        "contact_name": "Jamie Doyle"
-      },
-      {
-        "start_time": "2024-12-10T16:00:00",
-        "end_time": "2024-12-10T20:00:00",
-        "duration_minutes": 240,
-        "event_name": "Loopio Relaunch",
-        "meeting_type": "team",
-        "contact_name": "Madelaine Curry"
-      },
-      {
-        "start_time": "2024-12-11T08:00:00",
-        "end_time": "2024-12-11T15:00:00",
-        "duration_minutes": 420,
-        "event_name": "Client Event",
-        "meeting_type": "client",
-        "contact_name": "Irene Loh"
-      },
-      {
-        "start_time": "2024-12-11T14:00:00",
-        "end_time": "2024-12-11T15:00:00",
-        "duration_minutes": 60,
-        "event_name": "EC Connect",
-        "meeting_type": "team",
-        "contact_name": "Elsa Wadhwa"
-      },
-      {
-        "start_time": "2024-12-11T15:00:00",
-        "end_time": "2024-12-11T18:00:00",
-        "duration_minutes": 180,
-        "event_name": "Monthly Client event",
-        "meeting_type": "client",
-        "contact_name": "Ami Encarnacion"
-      },
-      {
-        "start_time": "2024-12-11T18:00:00",
-        "end_time": "2024-12-11T21:00:00",
-        "duration_minutes": 180,
-        "event_name": "Data Services First Wednesdays Winter Social",
-        "meeting_type": "social",
-        "contact_name": "Rhea Warrier"
-      },
-      {
-        "start_time": "2024-12-12T10:30:00",
-        "end_time": "2024-12-12T12:00:00",
-        "duration_minutes": 90,
-        "event_name": "WDC Ep5",
-        "meeting_type": "team",
-        "contact_name": "Gosia Jagoda"
-      },
-      {
-        "start_time": "2024-12-12T12:00:00",
-        "end_time": "2024-12-12T14:00:00",
-        "duration_minutes": 120,
-        "event_name": "DALAS",
-        "meeting_type": "team",
-        "contact_name": "Madelaine Curry"
-      },
-      {
-        "start_time": "2024-12-12T14:30:00",
-        "end_time": "2024-12-12T20:00:00",
-        "duration_minutes": 330,
-        "event_name": "HRTT Growth Event & Christmas Event",
-        "meeting_type": "client",
-        "contact_name": "James King"
-      },
-      {
-        "start_time": "2024-12-13T12:00:00",
-        "end_time": "2024-12-13T17:00:00",
-        "duration_minutes": 300,
-        "event_name": "Provisional booking of iX Q4 AHC",
-        "meeting_type": "team",
-        "contact_name": "Ellie Crayton, James Porter"
-      },
-      {
-        "start_time": "2024-12-13T17:00:00",
-        "end_time": "2024-12-13T20:00:00",
-        "duration_minutes": 180,
-        "event_name": "iX-CT AHC social",
-        "meeting_type": "social",
-        "contact_name": "N/A"
-      },
-      {
-        "start_time": "2024-12-17T10:00:00",
-        "end_time": "2024-12-17T13:00:00",
-        "duration_minutes": 180,
-        "event_name": "What\u2019s On Our Truck",
-        "meeting_type": "team",
-        "contact_name": "David Bibbs, Stefania Kern-Erdei"
-      },
-      {
-        "start_time": "2024-12-18T11:00:00",
-        "end_time": "2024-12-18T13:00:00",
-        "duration_minutes": 120,
-        "event_name": "T-Level PPPC workshop",
-        "meeting_type": "client",
-        "contact_name": "Gosia Jagoda"
-      },
-      {
-        "start_time": "2024-12-19T12:00:00",
-        "end_time": "2024-12-19T13:00:00",
-        "duration_minutes": 60,
-        "event_name": "Delivery Community AHC",
-        "meeting_type": "team",
-        "contact_name": "Sophia Ambrose"
-      },
-      {
-        "start_time": "2024-12-19T16:30:00",
-        "end_time": "2024-12-19T17:30:00",
-        "duration_minutes": 60,
-        "event_name": "HLS Townhall",
-        "meeting_type": "team",
-        "contact_name": "Matthew Cleary"
-      },
-      {
-        "start_time": "2025-01-06T09:00:00",
-        "end_time": "2025-01-06T18:00:00",
-        "duration_minutes": 540,
-        "event_name": "CIO London internal event",
+        "event_name": "Ford Opportunity Discussion",
         "meeting_type": "internal",
-        "contact_name": "Mari Cook"
+        "contact_name": "Angus Kantolinna"
       },
       {
-        "start_time": "2025-01-08T09:00:00",
-        "end_time": "2025-01-08T18:00:00",
-        "duration_minutes": 540,
-        "event_name": "CIO London internal event",
-        "meeting_type": "internal",
-        "contact_name": "Mari Cook"
-      },
-      {
-        "start_time": "2025-01-10T09:00:00",
-        "end_time": "2025-01-10T18:00:00",
-        "duration_minutes": 540,
-        "event_name": "HR Reinvention deep-dive with GenAI - upskilling Event Internal",
-        "meeting_type": "internal",
-        "contact_name": "Szilvia S\u00f3s-Temesi"
-      },
-      {
-        "start_time": "2025-01-16T12:00:00",
-        "end_time": "2025-01-16T13:00:00",
+        "start_time": "2025-01-09T15:00:00",
+        "end_time": "2025-01-09T16:00:00",
         "duration_minutes": 60,
-        "event_name": "Monthly Product Showcase",
+        "event_name": "Helloix Apprentice Team Kick-Off",
         "meeting_type": "internal",
-        "contact_name": "Diya Sharma"
-      },
-      {
-        "start_time": "2025-01-27T09:00:00",
-        "end_time": "2025-01-27T18:00:00",
-        "duration_minutes": 540,
-        "event_name": "CIO London internal event",
-        "meeting_type": "internal",
-        "contact_name": "Mari Cook"
-      },
-      {
-        "start_time": "2025-03-27T14:00:00",
-        "end_time": "2025-03-27T15:00:00",
-        "duration_minutes": 60,
-        "event_name": "Delivery Community Events",
-        "meeting_type": "internal",
-        "contact_name": "Team"
-      },
-      {
-        "start_time": "2025-01-07T13:00:00",
-        "end_time": "2025-01-07T14:00:00",
-        "duration_minutes": 60,
-        "event_name": "IX intern training",
-        "meeting_type": "internal",
-        "contact_name": "Jamie Doyle"
+        "contact_name": "Euan Wilcox"
       },
       {
         "start_time": "2025-01-09T16:00:00",
@@ -406,26 +46,34 @@
         "contact_name": "Elsa Wadhwa"
       },
       {
-        "start_time": "2025-01-14T09:00:00",
-        "end_time": "2025-01-14T13:00:00",
-        "duration_minutes": 240,
-        "event_name": "TCET Office Day workshops & Retro",
-        "meeting_type": "internal",
-        "contact_name": "Selin Demirtas"
+        "start_time": "2025-01-10T09:00:00",
+        "end_time": "2025-01-10T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "BA Client Workshop",
+        "meeting_type": "client",
+        "contact_name": "Madeleine Kristensson"
       },
       {
         "start_time": "2025-01-14T13:00:00",
         "end_time": "2025-01-14T14:00:00",
         "duration_minutes": 60,
-        "event_name": "IX intern training",
+        "event_name": "IX Intern Training",
         "meeting_type": "internal",
         "contact_name": "Jamie Doyle"
+      },
+      {
+        "start_time": "2025-01-14T09:00:00",
+        "end_time": "2025-01-14T13:00:00",
+        "duration_minutes": 240,
+        "event_name": "TCET Office Day Workshops",
+        "meeting_type": "internal",
+        "contact_name": "Selin Demirtas"
       },
       {
         "start_time": "2025-01-14T14:00:00",
         "end_time": "2025-01-14T17:00:00",
         "duration_minutes": 180,
-        "event_name": "TCET Office Day workshops & Retro",
+        "event_name": "TCET Retro",
         "meeting_type": "internal",
         "contact_name": "Selin Demirtas"
       },
@@ -441,7 +89,7 @@
         "start_time": "2025-01-15T16:00:00",
         "end_time": "2025-01-15T18:00:00",
         "duration_minutes": 120,
-        "event_name": "Meeting",
+        "event_name": "Heather Bertram Session",
         "meeting_type": "internal",
         "contact_name": "Heather Bertram"
       },
@@ -452,6 +100,14 @@
         "event_name": "BP Client Visit",
         "meeting_type": "client",
         "contact_name": "Eleanor Barron"
+      },
+      {
+        "start_time": "2025-01-16T12:00:00",
+        "end_time": "2025-01-16T13:00:00",
+        "duration_minutes": 60,
+        "event_name": "Monthly Product Showcase",
+        "meeting_type": "internal",
+        "contact_name": "Diya Sharma"
       },
       {
         "start_time": "2025-01-16T13:00:00",
@@ -465,7 +121,7 @@
         "start_time": "2025-01-16T16:30:00",
         "end_time": "2025-01-16T18:30:00",
         "duration_minutes": 120,
-        "event_name": "Foundation Females x EPEmbrace speaker event",
+        "event_name": "Foundation Females x EPEmbrace Speaker Event",
         "meeting_type": "internal",
         "contact_name": "Janavi Parasia"
       },
@@ -478,10 +134,18 @@
         "contact_name": "Arda Baki"
       },
       {
+        "start_time": "2025-01-20T10:00:00",
+        "end_time": "2025-01-20T17:00:00",
+        "duration_minutes": 420,
+        "event_name": "NHS Screening Workshop",
+        "meeting_type": "internal",
+        "contact_name": "Phil Lewton"
+      },
+      {
         "start_time": "2025-01-21T13:00:00",
         "end_time": "2025-01-21T14:00:00",
         "duration_minutes": 60,
-        "event_name": "IX intern training",
+        "event_name": "IX Intern Training",
         "meeting_type": "internal",
         "contact_name": "Jamie Doyle"
       },
@@ -489,7 +153,7 @@
         "start_time": "2025-01-21T14:00:00",
         "end_time": "2025-01-21T17:00:00",
         "duration_minutes": 180,
-        "event_name": "Telefonica Tech Power & Storage enablement",
+        "event_name": "Telefonica TechPower & Storage enablement",
         "meeting_type": "client",
         "contact_name": "Kerry Hutchins"
       },
@@ -497,9 +161,25 @@
         "start_time": "2025-01-22T13:00:00",
         "end_time": "2025-01-22T17:00:00",
         "duration_minutes": 240,
-        "event_name": "Internal workshop",
+        "event_name": "Internal Workshop",
         "meeting_type": "internal",
         "contact_name": "Julina Pickles"
+      },
+      {
+        "start_time": "2025-01-23T10:00:00",
+        "end_time": "2025-01-23T11:00:00",
+        "duration_minutes": 60,
+        "event_name": "BP Account SheRose Kick Off Event",
+        "meeting_type": "client",
+        "contact_name": "Catherine Coupland"
+      },
+      {
+        "start_time": "2025-01-23T11:00:00",
+        "end_time": "2025-01-23T12:00:00",
+        "duration_minutes": 60,
+        "event_name": "Project Management Bitesize Event",
+        "meeting_type": "internal",
+        "contact_name": "Isabelle Keegan"
       },
       {
         "start_time": "2025-01-23T12:00:00",
@@ -515,31 +195,31 @@
         "duration_minutes": 60,
         "event_name": "Delivery Community Events",
         "meeting_type": "internal",
-        "contact_name": "Team"
+        "contact_name": "Isabelle Keegan"
       },
       {
         "start_time": "2025-01-23T15:00:00",
         "end_time": "2025-01-23T17:00:00",
         "duration_minutes": 120,
-        "event_name": "bp account SheRose kick off event",
+        "event_name": "BP Account SheRose Kick Off Event",
         "meeting_type": "client",
         "contact_name": "Catherine Coupland"
       },
       {
-        "start_time": "2025-01-24T08:00:00",
-        "end_time": "2025-01-24T18:00:00",
-        "duration_minutes": 600,
-        "event_name": "Internal event - SAP SF Functional Bootcamp",
-        "meeting_type": "internal",
-        "contact_name": "Szilvia S\u00f3s-Temesi"
+        "start_time": "2025-01-27T08:00:00",
+        "end_time": "2025-01-27T15:00:00",
+        "duration_minutes": 420,
+        "event_name": "Client Workshop",
+        "meeting_type": "client",
+        "contact_name": "Irene Loh"
       },
       {
-        "start_time": "2025-01-28T08:00:00",
-        "end_time": "2025-01-28T18:00:00",
-        "duration_minutes": 600,
-        "event_name": "Internal event - SAP SF Functional Bootcamp",
+        "start_time": "2025-01-28T09:00:00",
+        "end_time": "2025-01-28T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "HRTT Leadership Day",
         "meeting_type": "internal",
-        "contact_name": "Szilvia S\u00f3s-Temesi"
+        "contact_name": "Rosie Grant"
       },
       {
         "start_time": "2025-01-29T09:00:00",
@@ -553,7 +233,7 @@
         "start_time": "2025-01-29T15:00:00",
         "end_time": "2025-01-29T18:00:00",
         "duration_minutes": 180,
-        "event_name": "Monthly Client event",
+        "event_name": "Monthly Client Event",
         "meeting_type": "client",
         "contact_name": "Ami Encarnacion"
       },
@@ -569,9 +249,9 @@
         "start_time": "2025-01-30T12:00:00",
         "end_time": "2025-01-30T17:00:00",
         "duration_minutes": 300,
-        "event_name": "bp Account Day",
+        "event_name": "Maya Bhardwaj BP Account Day",
         "meeting_type": "client",
-        "contact_name": "Maya Bhardwaj"
+        "contact_name": "Elsa Wadhwa"
       },
       {
         "start_time": "2025-01-31T09:00:00",
@@ -582,6 +262,46 @@
         "contact_name": "Emma Radford"
       },
       {
+        "start_time": "2025-02-03T08:00:00",
+        "end_time": "2025-02-03T15:00:00",
+        "duration_minutes": 420,
+        "event_name": "Client Workshop",
+        "meeting_type": "client",
+        "contact_name": "Irene Loh"
+      },
+      {
+        "start_time": "2025-02-03T15:00:00",
+        "end_time": "2025-02-03T17:00:00",
+        "duration_minutes": 120,
+        "event_name": "Rehearsal for Internal Event",
+        "meeting_type": "internal",
+        "contact_name": "Szilvia S\u00f3s-Temesi"
+      },
+      {
+        "start_time": "2025-02-04T13:00:00",
+        "end_time": "2025-02-04T18:00:00",
+        "duration_minutes": 300,
+        "event_name": "Public Sector Social Value Workshop",
+        "meeting_type": "internal",
+        "contact_name": "Molly Dove, Joe Cuthbert"
+      },
+      {
+        "start_time": "2025-02-05T08:00:00",
+        "end_time": "2025-02-05T15:00:00",
+        "duration_minutes": 420,
+        "event_name": "Client Workshop",
+        "meeting_type": "client",
+        "contact_name": "Irene Loh"
+      },
+      {
+        "start_time": "2025-02-05T15:00:00",
+        "end_time": "2025-02-05T17:00:00",
+        "duration_minutes": 120,
+        "event_name": "Girls That Invest Too",
+        "meeting_type": "internal",
+        "contact_name": "Dhruv Rajendrakumar, Srishti Navin Waghmare"
+      },
+      {
         "start_time": "2025-02-06T12:00:00",
         "end_time": "2025-02-06T13:30:00",
         "duration_minutes": 90,
@@ -590,20 +310,92 @@
         "contact_name": "Gosia Jagoda"
       },
       {
+        "start_time": "2025-02-06T14:00:00",
+        "end_time": "2025-02-06T15:00:00",
+        "duration_minutes": 60,
+        "event_name": "AES Architecture Community",
+        "meeting_type": "internal",
+        "contact_name": "Jon Granville, Dave Fox"
+      },
+      {
+        "start_time": "2025-02-06T16:00:00",
+        "end_time": "2025-02-06T18:00:00",
+        "duration_minutes": 120,
+        "event_name": "Goal Setting Session",
+        "meeting_type": "internal",
+        "contact_name": "Fausta Sukyte"
+      },
+      {
+        "start_time": "2025-02-07T09:00:00",
+        "end_time": "2025-02-07T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "Rehearsal for Internal Event",
+        "meeting_type": "internal",
+        "contact_name": "Szilvia S\u00f3s-Temesi"
+      },
+      {
+        "start_time": "2025-02-10T09:00:00",
+        "end_time": "2025-02-10T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "Targeted Critical Workstream Lead Skills for HRTT Lead Consultants",
+        "meeting_type": "internal",
+        "contact_name": "Szilvia S\u00f3s-Temesi"
+      },
+      {
         "start_time": "2025-02-11T17:30:00",
         "end_time": "2025-02-11T19:30:00",
         "duration_minutes": 120,
-        "event_name": "Foundation Females x EP Embrace (EA) Social Event",
+        "event_name": "Foundation Females x EP Embrace Social Event",
         "meeting_type": "internal",
         "contact_name": "Fasina Bamigboye"
       },
       {
-        "start_time": "2025-02-13T08:00:00",
+        "start_time": "2025-02-12T08:00:00",
+        "end_time": "2025-02-12T15:00:00",
+        "duration_minutes": 420,
+        "event_name": "Client Workshop",
+        "meeting_type": "client",
+        "contact_name": "Irene Loh"
+      },
+      {
+        "start_time": "2025-02-13T12:00:00",
         "end_time": "2025-02-13T18:00:00",
-        "duration_minutes": 600,
-        "event_name": "Internal event - SAP SF Functional Bootcamp",
+        "duration_minutes": 360,
+        "event_name": "Internal Event - SAP SF Functional Bootcamp",
         "meeting_type": "internal",
         "contact_name": "Szilvia S\u00f3s-Temesi"
+      },
+      {
+        "start_time": "2025-02-14T09:00:00",
+        "end_time": "2025-02-14T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "Targeted Critical Workstream Lead Skills for HRTT Lead Consultants",
+        "meeting_type": "internal",
+        "contact_name": "Szilvia S\u00f3s-Temesi"
+      },
+      {
+        "start_time": "2025-02-17T09:00:00",
+        "end_time": "2025-02-17T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "Targeted Critical Workstream Lead Skills for HRTT Lead Consultants",
+        "meeting_type": "internal",
+        "contact_name": "Szilvia S\u00f3s-Temesi"
+      },
+      {
+        "start_time": "2025-02-18T09:00:00",
+        "end_time": "2025-02-18T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "Targeted Critical Workstream Lead Skills for HRTT Lead Consultants",
+        "meeting_type": "internal",
+        "contact_name": "Szilvia S\u00f3s-Temesi"
+      },
+      {
+        "start_time": "2025-02-19T08:00:00",
+        "end_time": "2025-02-19T15:00:00",
+        "duration_minutes": 420,
+        "event_name": "Client Workshop",
+        "meeting_type": "client",
+        "contact_name": "Irene Loh"
       },
       {
         "start_time": "2025-02-20T14:00:00",
@@ -611,13 +403,37 @@
         "duration_minutes": 60,
         "event_name": "Delivery Community Events",
         "meeting_type": "internal",
-        "contact_name": "Team"
+        "contact_name": "Sophia Ambrose"
+      },
+      {
+        "start_time": "2025-02-20T15:00:00",
+        "end_time": "2025-02-20T16:00:00",
+        "duration_minutes": 60,
+        "event_name": "Experience Community Event",
+        "meeting_type": "internal",
+        "contact_name": "Sophia Ambrose"
+      },
+      {
+        "start_time": "2025-02-21T09:00:00",
+        "end_time": "2025-02-21T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "Targeted Critical Workstream Lead Skills for HRTT Lead Consultants",
+        "meeting_type": "internal",
+        "contact_name": "Szilvia S\u00f3s-Temesi"
+      },
+      {
+        "start_time": "2025-02-25T09:00:00",
+        "end_time": "2025-02-25T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "HRTT Leadership Day",
+        "meeting_type": "client",
+        "contact_name": "Rosie Grant"
       },
       {
         "start_time": "2025-02-26T15:00:00",
         "end_time": "2025-02-26T18:00:00",
         "duration_minutes": 180,
-        "event_name": "Monthly Client event",
+        "event_name": "Monthly Client Event",
         "meeting_type": "client",
         "contact_name": "Ami Encarnacion"
       },
@@ -626,7 +442,7 @@
         "end_time": "2025-02-27T12:00:00",
         "duration_minutes": 180,
         "event_name": "CPM Workshop",
-        "meeting_type": "internal",
+        "meeting_type": "client",
         "contact_name": "Priya Shajpal"
       },
       {
@@ -642,8 +458,128 @@
         "end_time": "2025-02-27T17:00:00",
         "duration_minutes": 240,
         "event_name": "CPM Workshop",
-        "meeting_type": "internal",
+        "meeting_type": "client",
         "contact_name": "Priya Shajpal"
+      },
+      {
+        "start_time": "2025-03-04T08:00:00",
+        "end_time": "2025-03-04T18:00:00",
+        "duration_minutes": 600,
+        "event_name": "Data Transformation Offering Enablement",
+        "meeting_type": "internal",
+        "contact_name": "Nina Trebaticka"
+      },
+      {
+        "start_time": "2025-03-05T08:00:00",
+        "end_time": "2025-03-05T18:00:00",
+        "duration_minutes": 600,
+        "event_name": "Data Transformation Offering Enablement",
+        "meeting_type": "internal",
+        "contact_name": "Nina Trebaticka"
+      },
+      {
+        "start_time": "2025-03-06T14:00:00",
+        "end_time": "2025-03-06T16:00:00",
+        "duration_minutes": 120,
+        "event_name": "CT IWD Event",
+        "meeting_type": "internal",
+        "contact_name": "Rachel Rajakariar"
+      },
+      {
+        "start_time": "2025-03-06T16:00:00",
+        "end_time": "2025-03-06T18:00:00",
+        "duration_minutes": 120,
+        "event_name": "UX Community of Practice",
+        "meeting_type": "internal",
+        "contact_name": "Elsa Wadhwa"
+      },
+      {
+        "start_time": "2025-03-11T08:00:00",
+        "end_time": "2025-03-11T18:00:00",
+        "duration_minutes": 600,
+        "event_name": "Data Partnership Training",
+        "meeting_type": "internal",
+        "contact_name": "Nina Trebaticka"
+      },
+      {
+        "start_time": "2025-03-12T08:00:00",
+        "end_time": "2025-03-12T18:00:00",
+        "duration_minutes": 600,
+        "event_name": "Data Partnership Training",
+        "meeting_type": "internal",
+        "contact_name": "Nina Trebaticka"
+      },
+      {
+        "start_time": "2025-03-13T14:00:00",
+        "end_time": "2025-03-13T15:00:00",
+        "duration_minutes": 60,
+        "event_name": "AES Architecture Community",
+        "meeting_type": "internal",
+        "contact_name": "Jon Granville/Dave Fox"
+      },
+      {
+        "start_time": "2025-03-17T09:00:00",
+        "end_time": "2025-03-17T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "Design ESA Course Delivery",
+        "meeting_type": "internal",
+        "contact_name": "Euan Wilcox"
+      },
+      {
+        "start_time": "2025-03-18T09:00:00",
+        "end_time": "2025-03-18T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "AI Strategy & Operating Model",
+        "meeting_type": "internal",
+        "contact_name": "Szilvia S\u00f3s-Temesi"
+      },
+      {
+        "start_time": "2025-03-19T09:00:00",
+        "end_time": "2025-03-19T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "AI Strategy & Operating Model",
+        "meeting_type": "internal",
+        "contact_name": "Szilvia S\u00f3s-Temesi"
+      },
+      {
+        "start_time": "2025-03-20T09:00:00",
+        "end_time": "2025-03-20T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "AI Strategy & Operating Model",
+        "meeting_type": "internal",
+        "contact_name": "Szilvia S\u00f3s-Temesi"
+      },
+      {
+        "start_time": "2025-03-21T09:00:00",
+        "end_time": "2025-03-21T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "AI Strategy & Operating Model",
+        "meeting_type": "internal",
+        "contact_name": "Szilvia S\u00f3s-Temesi"
+      },
+      {
+        "start_time": "2025-03-24T09:00:00",
+        "end_time": "2025-03-24T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "AI Strategy & Operating Model",
+        "meeting_type": "internal",
+        "contact_name": "Szilvia S\u00f3s-Temesi"
+      },
+      {
+        "start_time": "2025-03-25T09:00:00",
+        "end_time": "2025-03-25T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "AI Strategy & Operating Model",
+        "meeting_type": "internal",
+        "contact_name": "Szilvia S\u00f3s-Temesi"
+      },
+      {
+        "start_time": "2025-03-26T09:00:00",
+        "end_time": "2025-03-26T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "AI Strategy & Operating Model",
+        "meeting_type": "internal",
+        "contact_name": "Szilvia S\u00f3s-Temesi"
       },
       {
         "start_time": "2025-03-27T14:00:00",
@@ -651,7 +587,15 @@
         "duration_minutes": 60,
         "event_name": "Delivery Community Events",
         "meeting_type": "internal",
-        "contact_name": "Team"
+        "contact_name": "Sophia Ambrose"
+      },
+      {
+        "start_time": "2025-04-30T15:00:00",
+        "end_time": "2025-04-30T18:00:00",
+        "duration_minutes": 180,
+        "event_name": "Monthly Client Event",
+        "meeting_type": "client",
+        "contact_name": "Ami Encarnacion"
       }
     ]
   },
@@ -662,425 +606,36 @@
     "floor": 10,
     "bookings": [
       {
-        "start_time": "2024-11-04T18:00:00",
-        "end_time": "2024-11-04T23:59:59",
-        "duration_minutes": 360,
-        "event_name": "Comms Sector Day",
-        "meeting_type": "internal",
-        "contact_name": "Ellie"
-      },
-      {
-        "start_time": "2024-11-05T09:00:00",
-        "end_time": "2024-11-05T11:00:00",
-        "duration_minutes": 120,
-        "event_name": "HMRC Workshop",
-        "meeting_type": "client",
-        "contact_name": "Eli Pinto"
-      },
-      {
-        "start_time": "2024-11-05T12:30:00",
-        "end_time": "2024-11-05T15:00:00",
-        "duration_minutes": 150,
-        "event_name": "Finastra Workshop",
-        "meeting_type": "client",
-        "contact_name": "Tom Hewlett"
-      },
-      {
-        "start_time": "2024-11-06T10:30:00",
-        "end_time": "2024-11-06T17:00:00",
-        "duration_minutes": 390,
-        "event_name": "Barclays Experience Design",
-        "meeting_type": "client",
-        "contact_name": "Becca Porteous"
-      },
-      {
-        "start_time": "2024-11-11T18:00:00",
-        "end_time": "2024-11-11T23:59:59",
-        "duration_minutes": 360,
-        "event_name": "Comms Sector Day",
-        "meeting_type": "internal",
-        "contact_name": "Ellie"
-      },
-      {
-        "start_time": "2024-11-13T09:00:00",
-        "end_time": "2024-11-13T14:00:00",
-        "duration_minutes": 300,
-        "event_name": "NHS App Workshop",
-        "meeting_type": "client",
-        "contact_name": "Rachel Rajakarier"
-      },
-      {
-        "start_time": "2024-11-13T14:00:00",
-        "end_time": "2024-11-13T15:00:00",
+        "start_time": "2025-01-08T13:45:00",
+        "end_time": "2025-01-08T14:45:00",
         "duration_minutes": 60,
-        "event_name": "People Committee",
+        "event_name": "ES Community",
         "meeting_type": "internal",
-        "contact_name": "Hazel Boyson"
+        "contact_name": "Vonni Bentley"
       },
       {
-        "start_time": "2024-11-13T15:00:00",
-        "end_time": "2024-11-13T17:00:00",
-        "duration_minutes": 120,
-        "event_name": "HMRC CDS TCET Junior Architects Session",
-        "meeting_type": "client",
-        "contact_name": "N/A"
-      },
-      {
-        "start_time": "2024-11-14T08:00:00",
-        "end_time": "2024-11-14T09:00:00",
+        "start_time": "2025-01-09T15:00:00",
+        "end_time": "2025-01-09T16:00:00",
         "duration_minutes": 60,
-        "event_name": "HRTT Breakfast",
-        "meeting_type": "client",
-        "contact_name": "Ajay Pink"
-      },
-      {
-        "start_time": "2024-11-14T09:00:00",
-        "end_time": "2024-11-14T18:00:00",
-        "duration_minutes": 540,
-        "event_name": "Client Workshop Meeting",
-        "meeting_type": "client",
-        "contact_name": "Amanda Phu"
-      },
-      {
-        "start_time": "2024-11-14T13:00:00",
-        "end_time": "2024-11-14T14:00:00",
-        "duration_minutes": 60,
-        "event_name": "Associates Book Club",
+        "event_name": "HelloiX Apprentice",
         "meeting_type": "internal",
-        "contact_name": "Elsa Wadhwa & Will Evans"
-      },
-      {
-        "start_time": "2024-11-15T08:00:00",
-        "end_time": "2024-11-15T18:00:00",
-        "duration_minutes": 600,
-        "event_name": "Client Workshop Meeting",
-        "meeting_type": "client",
-        "contact_name": "Amanda Phu"
-      },
-      {
-        "start_time": "2024-11-18T09:00:00",
-        "end_time": "2024-11-18T17:00:00",
-        "duration_minutes": 480,
-        "event_name": "Royal London Future Visioning Workshop",
-        "meeting_type": "client",
-        "contact_name": "N/A"
-      },
-      {
-        "start_time": "2024-11-19T13:30:00",
-        "end_time": "2024-11-19T15:30:00",
-        "duration_minutes": 120,
-        "event_name": "Associates Spotlight Rehearsals",
-        "meeting_type": "internal",
-        "contact_name": "Mat Turner"
-      },
-      {
-        "start_time": "2024-11-20T10:00:00",
-        "end_time": "2024-11-20T12:00:00",
-        "duration_minutes": 120,
-        "event_name": "Internal Team Meeting",
-        "meeting_type": "internal",
-        "contact_name": "Tracey Gilbert"
-      },
-      {
-        "start_time": "2024-11-20T13:00:00",
-        "end_time": "2024-11-20T15:00:00",
-        "duration_minutes": 120,
-        "event_name": "Apptio ITFM Clinic Day 1",
-        "meeting_type": "client",
-        "contact_name": "Barry Hunt"
-      },
-      {
-        "start_time": "2024-11-20T17:00:00",
-        "end_time": "2024-11-20T18:00:00",
-        "duration_minutes": 60,
-        "event_name": "Internal Coaches Culture Conversation",
-        "meeting_type": "internal",
-        "contact_name": "Andrew Mullis"
-      },
-      {
-        "start_time": "2024-11-21T10:30:00",
-        "end_time": "2024-11-21T11:30:00",
-        "duration_minutes": 60,
-        "event_name": "IBM Ecosystem/Tech/Consulting Partnership Clarification Session",
-        "meeting_type": "client",
-        "contact_name": "David Bibbs"
-      },
-      {
-        "start_time": "2024-11-21T12:00:00",
-        "end_time": "2024-11-21T13:00:00",
-        "duration_minutes": 60,
-        "event_name": "Delivery Community AHC",
-        "meeting_type": "client",
-        "contact_name": "Sophia Ambrose"
-      },
-      {
-        "start_time": "2024-11-21T13:00:00",
-        "end_time": "2024-11-21T14:30:00",
-        "duration_minutes": 90,
-        "event_name": "Apptio ITFM Clinic Day 2",
-        "meeting_type": "client",
-        "contact_name": "Barry Hunt"
-      },
-      {
-        "start_time": "2024-11-21T15:00:00",
-        "end_time": "2024-11-21T16:00:00",
-        "duration_minutes": 60,
-        "event_name": "Delivery Events",
-        "meeting_type": "internal",
-        "contact_name": "N/A"
-      },
-      {
-        "start_time": "2024-11-26T10:30:00",
-        "end_time": "2024-11-26T12:30:00",
-        "duration_minutes": 120,
-        "event_name": "NHS DTOS",
-        "meeting_type": "client",
-        "contact_name": "Melanie Allard"
-      },
-      {
-        "start_time": "2024-11-26T12:30:00",
-        "end_time": "2024-11-26T13:30:00",
-        "duration_minutes": 60,
-        "event_name": "Crochet",
-        "meeting_type": "internal",
-        "contact_name": "Sukriti Khurana"
-      },
-      {
-        "start_time": "2024-11-26T13:30:00",
-        "end_time": "2024-11-26T17:30:00",
-        "duration_minutes": 240,
-        "event_name": "NHS DTOS",
-        "meeting_type": "client",
-        "contact_name": "Melanie Allard"
-      },
-      {
-        "start_time": "2024-11-27T10:00:00",
-        "end_time": "2024-11-27T17:00:00",
-        "duration_minutes": 420,
-        "event_name": "Optimizely KO",
-        "meeting_type": "client",
-        "contact_name": "Madeleine Lewis"
-      },
-      {
-        "start_time": "2024-11-28T10:30:00",
-        "end_time": "2024-11-28T12:30:00",
-        "duration_minutes": 120,
-        "event_name": "Associates Workshop",
-        "meeting_type": "internal",
-        "contact_name": "Olivia Read & Olivia Davies"
-      },
-      {
-        "start_time": "2024-11-28T12:30:00",
-        "end_time": "2024-11-28T13:30:00",
-        "duration_minutes": 60,
-        "event_name": "Associates Book Club",
-        "meeting_type": "internal",
-        "contact_name": "Elsa Wadhwa & Will Evans"
-      },
-      {
-        "start_time": "2024-11-28T13:30:00",
-        "end_time": "2024-11-28T15:00:00",
-        "duration_minutes": 90,
-        "event_name": "Delivery Community - Bias in Gen AI Event",
-        "meeting_type": "internal",
-        "contact_name": "Rachel Rajakarier"
-      },
-      {
-        "start_time": "2024-11-28T15:00:00",
-        "end_time": "2024-11-28T17:00:00",
-        "duration_minutes": 120,
-        "event_name": "End of Day Associate Awards",
-        "meeting_type": "internal",
-        "contact_name": "Mat Turner"
-      },
-      {
-        "start_time": "2024-12-03T10:00:00",
-        "end_time": "2024-12-03T14:30:00",
-        "duration_minutes": 270,
-        "event_name": "HMRC CDS TCET workshop",
-        "meeting_type": "client",
-        "contact_name": "Selin Demirtas"
-      },
-      {
-        "start_time": "2024-12-03T14:30:00",
-        "end_time": "2024-12-03T20:00:00",
-        "duration_minutes": 330,
-        "event_name": "HRTT Growth",
-        "meeting_type": "internal",
-        "contact_name": "N/A"
-      },
-      {
-        "start_time": "2024-12-04T09:00:00",
-        "end_time": "2024-12-04T17:00:00",
-        "duration_minutes": 480,
-        "event_name": "Client event (Chanel Workshop)",
-        "meeting_type": "client",
-        "contact_name": "Katie Williams"
-      },
-      {
-        "start_time": "2024-12-05T12:00:00",
-        "end_time": "2024-12-05T13:00:00",
-        "duration_minutes": 60,
-        "event_name": "HLS Christmas Crafts",
-        "meeting_type": "internal",
-        "contact_name": "Gina Britton"
-      },
-      {
-        "start_time": "2024-12-05T13:00:00",
-        "end_time": "2024-12-05T14:00:00",
-        "duration_minutes": 60,
-        "event_name": "NHS App IXD huddle",
-        "meeting_type": "internal",
-        "contact_name": "N/A"
-      },
-      {
-        "start_time": "2024-12-09T00:00:00",
-        "end_time": "2024-12-09T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Event & Christmas Event",
-        "meeting_type": "internal",
-        "contact_name": "Ajay Pink, James King"
-      },
-      {
-        "start_time": "2024-12-10T10:00:00",
-        "end_time": "2024-12-10T12:00:00",
-        "duration_minutes": 120,
-        "event_name": "LBG Account",
-        "meeting_type": "client",
-        "contact_name": "Hazel Bosson / Misha Patel"
-      },
-      {
-        "start_time": "2024-12-10T12:00:00",
-        "end_time": "2024-12-10T14:00:00",
-        "duration_minutes": 120,
-        "event_name": "MakeHerStory - FS Hazel Bosson Foundation Sustainability Community Winter Event",
-        "meeting_type": "internal",
-        "contact_name": "N/A"
-      },
-      {
-        "start_time": "2024-12-10T14:00:00",
-        "end_time": "2024-12-10T15:00:00",
-        "duration_minutes": 60,
-        "event_name": "Contact",
-        "meeting_type": "internal",
-        "contact_name": "Maisie Matthews"
-      },
-      {
-        "start_time": "2024-12-10T16:30:00",
-        "end_time": "2024-12-10T19:30:00",
-        "duration_minutes": 180,
-        "event_name": "HCS Quiz",
-        "meeting_type": "internal",
-        "contact_name": "N/A"
-      },
-      {
-        "start_time": "2024-12-11T12:00:00",
-        "end_time": "2024-12-11T13:00:00",
-        "duration_minutes": 60,
-        "event_name": "HelloWorld Intern Christmas Event",
-        "meeting_type": "internal",
-        "contact_name": "Elsa Wadhwa"
-      },
-      {
-        "start_time": "2024-12-11T16:00:00",
-        "end_time": "2024-12-11T18:30:00",
-        "duration_minutes": 150,
-        "event_name": "EAGLE Christmas event",
-        "meeting_type": "internal",
-        "contact_name": "Ella Wallace"
-      },
-      {
-        "start_time": "2024-12-12T13:00:00",
-        "end_time": "2024-12-12T14:00:00",
-        "duration_minutes": 60,
-        "event_name": "NHS App IXD huddle",
-        "meeting_type": "internal",
-        "contact_name": "Sarah Cronin Rodger"
-      },
-      {
-        "start_time": "2024-12-12T16:30:00",
-        "end_time": "2024-12-12T20:00:00",
-        "duration_minutes": 210,
-        "event_name": "Early Professionals Eagle winter social",
-        "meeting_type": "internal",
-        "contact_name": "Jessica Quaye or Saranya Lahiri"
-      },
-      {
-        "start_time": "2024-12-16T00:00:00",
-        "end_time": "2024-12-16T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Contact",
-        "meeting_type": "internal",
-        "contact_name": "Nathan Booth"
-      },
-      {
-        "start_time": "2024-12-17T10:00:00",
-        "end_time": "2024-12-17T13:00:00",
-        "duration_minutes": 180,
-        "event_name": "What\u2019s On Our Truck - David Bibbs",
-        "meeting_type": "client",
-        "contact_name": "stefania.kern-erdei@ibm.com"
-      },
-      {
-        "start_time": "2024-12-19T16:30:00",
-        "end_time": "2024-12-19T17:30:00",
-        "duration_minutes": 60,
-        "event_name": "HLS Townhall",
-        "meeting_type": "internal",
-        "contact_name": "Matthewcleary@ibm.com"
-      },
-      {
-        "start_time": "2024-11-22T14:00:00",
-        "end_time": "2024-11-22T16:00:00",
-        "duration_minutes": 120,
-        "event_name": "team sync",
-        "meeting_type": "internal",
-        "contact_name": "john smith",
-        "user_id": "U080SQZMX1T"
-      },
-      {
-        "start_time": "2024-11-29T14:00:00",
-        "end_time": "2024-11-29T16:00:00",
-        "duration_minutes": 120,
-        "event_name": "team sync",
-        "meeting_type": "internal",
-        "contact_name": "john smith",
-        "user_id": "U080SQZMX1T"
-      },
-      {
-        "start_time": "2024-12-06T14:00:00",
-        "end_time": "2024-12-06T16:00:00",
-        "duration_minutes": 120,
-        "event_name": "team sync",
-        "meeting_type": "internal",
-        "contact_name": "john smith",
-        "user_id": "U080SQZMX1T"
-      },
-      {
-        "start_time": "2024-12-13T14:00:00",
-        "end_time": "2024-12-13T16:00:00",
-        "duration_minutes": 120,
-        "event_name": "team sync",
-        "meeting_type": "internal",
-        "contact_name": "john smith",
-        "user_id": "U080SQZMX1T"
-      },
-      {
-        "start_time": "2024-12-20T14:00:00",
-        "end_time": "2024-12-20T16:00:00",
-        "duration_minutes": 120,
-        "event_name": "team sync",
-        "meeting_type": "internal",
-        "contact_name": "john smith",
-        "user_id": "U080SQZMX1T"
+        "contact_name": "Belle Putnam"
       },
       {
         "start_time": "2025-01-14T09:00:00",
         "end_time": "2025-01-14T17:00:00",
         "duration_minutes": 480,
-        "event_name": "TCET Office Day workshops & Retro",
+        "event_name": "TCET Office Day Workshops & Retro",
         "meeting_type": "internal",
         "contact_name": "Selin Demirtas"
+      },
+      {
+        "start_time": "2025-01-15T10:00:00",
+        "end_time": "2025-01-15T17:00:00",
+        "duration_minutes": 420,
+        "event_name": "ATW Working Group Session",
+        "meeting_type": "internal",
+        "contact_name": "Louise Coulson"
       },
       {
         "start_time": "2025-01-16T09:00:00",
@@ -1091,12 +646,20 @@
         "contact_name": "Eleanor Barron"
       },
       {
+        "start_time": "2025-01-20T10:00:00",
+        "end_time": "2025-01-20T17:00:00",
+        "duration_minutes": 420,
+        "event_name": "NHS Screening Workshop",
+        "meeting_type": "client",
+        "contact_name": "Phil Lewton"
+      },
+      {
         "start_time": "2025-01-22T09:00:00",
         "end_time": "2025-01-22T17:00:00",
         "duration_minutes": 480,
         "event_name": "Booking",
         "meeting_type": "internal",
-        "contact_name": "Hannah Jones/Linda Williams"
+        "contact_name": "Hannah Jones, Linda Williams"
       },
       {
         "start_time": "2025-01-23T09:00:00",
@@ -1105,6 +668,49 @@
         "event_name": "BP Client Visit",
         "meeting_type": "client",
         "contact_name": "Eleanor Barron"
+      },
+      {
+        "start_time": "2025-02-27T08:00:00",
+        "end_time": "2025-02-27T19:00:00",
+        "duration_minutes": 660,
+        "event_name": "Global Associates Day",
+        "meeting_type": "internal",
+        "contact_name": "Ichi Cueto"
+      },
+      {
+        "start_time": "2025-03-17T09:00:00",
+        "end_time": "2025-03-17T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "Design ESA Course Delivery",
+        "meeting_type": "internal",
+        "contact_name": "Euan Wilcox"
+      },
+      {
+        "start_time": "2025-01-28T09:00:00",
+        "end_time": "2025-01-28T18:00:00",
+        "duration_minutes": 540,
+        "event_name": "9hrs",
+        "meeting_type": "client",
+        "contact_name": "madeleine lewis",
+        "user_id": "WL3TXKWNL"
+      },
+      {
+        "start_time": "2025-01-29T09:00:00",
+        "end_time": "2025-01-29T18:00:00",
+        "duration_minutes": 540,
+        "event_name": "9hrs",
+        "meeting_type": "client",
+        "contact_name": "madeleine lewis",
+        "user_id": "WL3TXKWNL"
+      },
+      {
+        "start_time": "2025-01-30T09:00:00",
+        "end_time": "2025-01-30T18:00:00",
+        "duration_minutes": 540,
+        "event_name": "9hrs",
+        "meeting_type": "client",
+        "contact_name": "madeleine lewis",
+        "user_id": "WL3TXKWNL"
       }
     ]
   },
@@ -1115,180 +721,20 @@
     "floor": 10,
     "bookings": [
       {
-        "start_time": "2024-11-04T18:00:00",
-        "end_time": "2024-11-04T23:59:59",
-        "duration_minutes": 360,
-        "event_name": "Comms Sector Day",
-        "meeting_type": "internal",
-        "contact_name": "Ellie Keown"
-      },
-      {
-        "start_time": "2024-11-05T09:00:00",
-        "end_time": "2024-11-05T17:00:00",
-        "duration_minutes": 480,
-        "event_name": "IAG/BA client use",
-        "meeting_type": "client",
-        "contact_name": "Madeleine Kristensson"
-      },
-      {
-        "start_time": "2024-11-07T12:30:00",
-        "end_time": "2024-11-07T14:00:00",
+        "start_time": "2025-01-07T14:30:00",
+        "end_time": "2025-01-07T16:00:00",
         "duration_minutes": 90,
-        "event_name": "PPPC Pitch Roulette Event",
+        "event_name": "HelloIX Retro",
         "meeting_type": "internal",
-        "contact_name": "Gosia Jagoda"
+        "contact_name": "Sophia Ambrose"
       },
       {
-        "start_time": "2024-11-12T09:00:00",
-        "end_time": "2024-11-12T18:00:00",
-        "duration_minutes": 540,
-        "event_name": "Client Workshop Meeting",
-        "meeting_type": "client",
-        "contact_name": "Amanda Phu"
-      },
-      {
-        "start_time": "2024-11-13T09:00:00",
-        "end_time": "2024-11-13T17:00:00",
-        "duration_minutes": 480,
-        "event_name": "IAG/BA client use",
-        "meeting_type": "client",
-        "contact_name": "Madeleine Kristensson"
-      },
-      {
-        "start_time": "2024-11-14T09:00:00",
-        "end_time": "2024-11-14T18:00:00",
-        "duration_minutes": 540,
-        "event_name": "Client Workshop Meeting",
-        "meeting_type": "client",
-        "contact_name": "Amanda Phu"
-      },
-      {
-        "start_time": "2024-11-15T09:00:00",
-        "end_time": "2024-11-15T18:00:00",
-        "duration_minutes": 540,
-        "event_name": "Client Workshop Meeting",
-        "meeting_type": "client",
-        "contact_name": "Amanda Phu"
-      },
-      {
-        "start_time": "2024-11-19T13:00:00",
-        "end_time": "2024-11-19T14:00:00",
-        "duration_minutes": 60,
-        "event_name": "HelloWorld Intro to Garage",
+        "start_time": "2025-01-08T11:00:00",
+        "end_time": "2025-01-08T16:00:00",
+        "duration_minutes": 300,
+        "event_name": "Collaboration Session",
         "meeting_type": "internal",
-        "contact_name": "Jamie Doyle"
-      },
-      {
-        "start_time": "2024-11-20T09:00:00",
-        "end_time": "2024-11-20T17:00:00",
-        "duration_minutes": 480,
-        "event_name": "IAG/BA client use",
-        "meeting_type": "client",
-        "contact_name": "Madeleine Kristensson"
-      },
-      {
-        "start_time": "2024-11-21T15:00:00",
-        "end_time": "2024-11-21T17:00:00",
-        "duration_minutes": 120,
-        "event_name": "Event",
-        "meeting_type": "internal",
-        "contact_name": "Sukriti Khurana, Diani Flower, Thea Hunt"
-      },
-      {
-        "start_time": "2024-11-25T00:00:00",
-        "end_time": "2024-11-25T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Tracey Gilbert Team Day",
-        "meeting_type": "internal",
-        "contact_name": "Idiko Baumholczer"
-      },
-      {
-        "start_time": "2024-11-27T09:00:00",
-        "end_time": "2024-11-27T17:00:00",
-        "duration_minutes": 480,
-        "event_name": "IAG/BA client use",
-        "meeting_type": "client",
-        "contact_name": "Madeleine Kristensson"
-      },
-      {
-        "start_time": "2024-11-28T09:00:00",
-        "end_time": "2024-11-28T15:00:00",
-        "duration_minutes": 360,
-        "event_name": "Designathon",
-        "meeting_type": "internal",
-        "contact_name": "Olga Woerner"
-      },
-      {
-        "start_time": "2024-11-28T15:00:00",
-        "end_time": "2024-11-28T23:59:59",
-        "duration_minutes": 540,
-        "event_name": "Associate awards",
-        "meeting_type": "internal",
-        "contact_name": "Mat Turner"
-      },
-      {
-        "start_time": "2024-12-02T14:30:00",
-        "end_time": "2024-12-02T17:00:00",
-        "duration_minutes": 150,
-        "event_name": "Catherine Coupland (Account Event)",
-        "meeting_type": "client",
-        "contact_name": "Catherine Coupland"
-      },
-      {
-        "start_time": "2024-12-04T09:00:00",
-        "end_time": "2024-12-04T17:00:00",
-        "duration_minutes": 480,
-        "event_name": "IAG/BA client use",
-        "meeting_type": "client",
-        "contact_name": "Madeleine Kristensson"
-      },
-      {
-        "start_time": "2024-12-05T10:00:00",
-        "end_time": "2024-12-05T16:00:00",
-        "duration_minutes": 360,
-        "event_name": "CPM EP Day",
-        "meeting_type": "internal",
-        "contact_name": "Priya Shah"
-      },
-      {
-        "start_time": "2024-12-05T16:00:00",
-        "end_time": "2024-12-05T17:30:00",
-        "duration_minutes": 90,
-        "event_name": "HLS Awards",
-        "meeting_type": "internal",
-        "contact_name": "Gina Britton"
-      },
-      {
-        "start_time": "2024-12-10T12:00:00",
-        "end_time": "2024-12-10T14:00:00",
-        "duration_minutes": 120,
-        "event_name": "MakeHerStory FS",
-        "meeting_type": "client",
-        "contact_name": "Hazel Bosson"
-      },
-      {
-        "start_time": "2024-12-11T09:00:00",
-        "end_time": "2024-12-11T17:00:00",
-        "duration_minutes": 480,
-        "event_name": "IAG/BA client use",
-        "meeting_type": "client",
-        "contact_name": "Madeleine Kristensson"
-      },
-      {
-        "start_time": "2024-12-18T09:00:00",
-        "end_time": "2024-12-18T17:00:00",
-        "duration_minutes": 480,
-        "event_name": "IAG/BA client use",
-        "meeting_type": "client",
-        "contact_name": "Madeleine Kristensson"
-      },
-      {
-        "start_time": "2024-11-26T13:00:00",
-        "end_time": "2024-11-26T14:00:00",
-        "duration_minutes": 60,
-        "event_name": "natwest",
-        "meeting_type": "client",
-        "contact_name": "james"
+        "contact_name": "Tomas Vickers"
       },
       {
         "start_time": "2025-01-09T15:00:00",
@@ -1299,29 +745,84 @@
         "contact_name": "Kelly Anderson"
       },
       {
+        "start_time": "2025-01-14T14:00:00",
+        "end_time": "2025-01-14T17:00:00",
+        "duration_minutes": 180,
+        "event_name": "DWP Tech Debt",
+        "meeting_type": "client",
+        "contact_name": "Kate Gowans"
+      },
+      {
+        "start_time": "2025-01-16T10:00:00",
+        "end_time": "2025-01-16T17:00:00",
+        "duration_minutes": 420,
+        "event_name": "DLA-C Working Group Session",
+        "meeting_type": "internal",
+        "contact_name": "Louise Coulson"
+      },
+      {
         "start_time": "2025-01-17T10:00:00",
         "end_time": "2025-01-17T12:00:00",
         "duration_minutes": 120,
-        "event_name": "Accessibility Lab - DWP",
+        "event_name": "Accessibility Lab \u2013 DWP",
         "meeting_type": "client",
         "contact_name": "Kelly Anderson"
+      },
+      {
+        "start_time": "2025-01-22T09:00:00",
+        "end_time": "2025-01-22T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "Associates Kick-Off",
+        "meeting_type": "internal",
+        "contact_name": "Ichi Cueto"
+      },
+      {
+        "start_time": "2025-01-23T14:00:00",
+        "end_time": "2025-01-23T15:00:00",
+        "duration_minutes": 60,
+        "event_name": "EC Connect",
+        "meeting_type": "internal",
+        "contact_name": "Elsa Wadhwa, Jamie Doyle"
       },
       {
         "start_time": "2025-01-24T10:00:00",
         "end_time": "2025-01-24T12:00:00",
         "duration_minutes": 120,
-        "event_name": "Accessibility Lab - DWP",
+        "event_name": "Accessibility Lab \u2013 DWP",
         "meeting_type": "client",
         "contact_name": "Kelly Anderson"
       },
       {
-        "start_time": "2025-01-07T14:30:00",
-        "end_time": "2025-01-07T16:00:00",
-        "duration_minutes": 90,
-        "event_name": "helloix leadership retro",
+        "start_time": "2025-02-27T08:00:00",
+        "end_time": "2025-02-27T19:00:00",
+        "duration_minutes": 660,
+        "event_name": "Global Associates Day",
         "meeting_type": "internal",
-        "contact_name": "eleanor barron",
-        "user_id": "W014VKYFWR5"
+        "contact_name": "Ichi Cueto"
+      },
+      {
+        "start_time": "2025-02-04T13:00:00",
+        "end_time": "2025-02-04T14:00:00",
+        "duration_minutes": 60,
+        "event_name": "IX Intern Training",
+        "meeting_type": "internal",
+        "contact_name": "Jamie Doyle"
+      },
+      {
+        "start_time": "2025-03-17T09:00:00",
+        "end_time": "2025-03-17T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "Design ESA Course Delivery",
+        "meeting_type": "internal",
+        "contact_name": "Euan Wilcox"
+      },
+      {
+        "start_time": "2025-03-26T15:00:00",
+        "end_time": "2025-03-26T18:00:00",
+        "duration_minutes": 180,
+        "event_name": "Monthly Client Event",
+        "meeting_type": "client",
+        "contact_name": "Ami Encarnacion"
       }
     ]
   },
@@ -1332,107 +833,123 @@
     "floor": 10,
     "bookings": [
       {
-        "start_time": "2024-11-07T00:00:00",
-        "end_time": "2024-11-07T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Whole area for DWP Gen AI Project",
-        "meeting_type": "internal",
-        "contact_name": "Elena Nitova"
-      },
-      {
-        "start_time": "2024-11-14T00:00:00",
-        "end_time": "2024-11-14T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Whole area for DWP Gen AI Project",
-        "meeting_type": "internal",
-        "contact_name": "Elena Nitova"
-      },
-      {
-        "start_time": "2024-11-21T00:00:00",
-        "end_time": "2024-11-21T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Whole area for DWP Gen AI Project",
-        "meeting_type": "internal",
-        "contact_name": "Elena Nitova"
-      },
-      {
-        "start_time": "2024-11-27T00:00:00",
-        "end_time": "2024-11-27T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Whole area for NHS App N&M team",
-        "meeting_type": "internal",
-        "contact_name": "Mel Hyde"
-      },
-      {
-        "start_time": "2024-11-28T00:00:00",
-        "end_time": "2024-11-28T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Whole area for DWP Gen AI Project",
-        "meeting_type": "internal",
-        "contact_name": "Elena Nitova"
-      },
-      {
-        "start_time": "2024-12-05T00:00:00",
-        "end_time": "2024-12-05T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Whole area for DWP Gen AI Project",
-        "meeting_type": "internal",
-        "contact_name": "Elena Nitova"
-      },
-      {
-        "start_time": "2024-12-12T00:00:00",
-        "end_time": "2024-12-12T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Whole area for DWP Gen AI Project",
-        "meeting_type": "internal",
-        "contact_name": "Elena Nitova"
-      },
-      {
-        "start_time": "2024-12-19T00:00:00",
-        "end_time": "2024-12-19T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Whole area for DWP Gen AI Project",
-        "meeting_type": "internal",
-        "contact_name": "Elena Nitova"
-      },
-      {
-        "start_time": "2025-01-08T00:00:00",
-        "end_time": "2025-01-08T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Whole area for BA client",
+        "start_time": "2025-01-08T09:00:00",
+        "end_time": "2025-01-08T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "BA Client Session",
         "meeting_type": "client",
         "contact_name": "Madeleine Kristensson"
       },
       {
-        "start_time": "2025-01-09T00:00:00",
-        "end_time": "2025-01-09T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Whole area for DWP Gen AI Project; 20+ people",
-        "meeting_type": "internal",
+        "start_time": "2025-01-09T09:00:00",
+        "end_time": "2025-01-09T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "DWP Gen AI Project",
+        "meeting_type": "client",
         "contact_name": "Elena Nitova"
       },
       {
-        "start_time": "2025-01-16T00:00:00",
-        "end_time": "2025-01-16T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Whole area for DWP Gen AI Project; 20+ people",
-        "meeting_type": "internal",
+        "start_time": "2025-01-15T09:00:00",
+        "end_time": "2025-01-15T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "BA Client Session",
+        "meeting_type": "client",
+        "contact_name": "Madeleine Kristensson"
+      },
+      {
+        "start_time": "2025-01-16T09:00:00",
+        "end_time": "2025-01-16T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "DWP Gen AI Project",
+        "meeting_type": "client",
         "contact_name": "Elena Nitova"
       },
       {
-        "start_time": "2025-01-23T00:00:00",
-        "end_time": "2025-01-23T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Whole area for DWP Gen AI Project; 20+ people",
-        "meeting_type": "internal",
+        "start_time": "2025-01-22T09:00:00",
+        "end_time": "2025-01-22T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "BA Client Session",
+        "meeting_type": "client",
+        "contact_name": "Madeleine Kristensson"
+      },
+      {
+        "start_time": "2025-01-23T09:00:00",
+        "end_time": "2025-01-23T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "DWP Gen AI Project",
+        "meeting_type": "client",
         "contact_name": "Elena Nitova"
       },
       {
-        "start_time": "2025-01-30T00:00:00",
-        "end_time": "2025-01-30T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Whole area for DWP Gen AI Project; 20+ people",
-        "meeting_type": "internal",
+        "start_time": "2025-01-29T09:00:00",
+        "end_time": "2025-01-29T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "BA Client Session",
+        "meeting_type": "client",
+        "contact_name": "Madeleine Kristensson"
+      },
+      {
+        "start_time": "2025-01-30T09:00:00",
+        "end_time": "2025-01-30T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "DWP Gen AI Project",
+        "meeting_type": "client",
+        "contact_name": "Elena Nitova"
+      },
+      {
+        "start_time": "2025-02-05T09:00:00",
+        "end_time": "2025-02-05T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "BA Client Session",
+        "meeting_type": "client",
+        "contact_name": "Madeleine Kristensson"
+      },
+      {
+        "start_time": "2025-02-06T09:00:00",
+        "end_time": "2025-02-06T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "DWP Gen AI Project",
+        "meeting_type": "client",
+        "contact_name": "Elena Nitova"
+      },
+      {
+        "start_time": "2025-02-12T09:00:00",
+        "end_time": "2025-02-12T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "BA Client Session",
+        "meeting_type": "client",
+        "contact_name": "Madeleine Kristensson"
+      },
+      {
+        "start_time": "2025-02-13T09:00:00",
+        "end_time": "2025-02-13T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "DWP Gen AI Project",
+        "meeting_type": "client",
+        "contact_name": "Elena Nitova"
+      },
+      {
+        "start_time": "2025-02-19T09:00:00",
+        "end_time": "2025-02-19T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "BA Client Session",
+        "meeting_type": "client",
+        "contact_name": "Madeleine Kristensson"
+      },
+      {
+        "start_time": "2025-02-20T09:00:00",
+        "end_time": "2025-02-20T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "DWP Gen AI Project",
+        "meeting_type": "client",
+        "contact_name": "Elena Nitova"
+      },
+      {
+        "start_time": "2025-02-27T09:00:00",
+        "end_time": "2025-02-27T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "DWP Gen AI Project",
+        "meeting_type": "client",
         "contact_name": "Elena Nitova"
       }
     ]
@@ -1444,124 +961,60 @@
     "floor": 10,
     "bookings": [
       {
-        "start_time": "2024-11-07T00:00:00",
-        "end_time": "2024-11-07T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "DALAS",
-        "meeting_type": "internal",
-        "contact_name": "Madelaine Curry"
-      },
-      {
-        "start_time": "2024-11-14T00:00:00",
-        "end_time": "2024-11-14T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "DALAS",
-        "meeting_type": "internal",
-        "contact_name": "Madelaine Curry"
-      },
-      {
-        "start_time": "2024-11-21T00:00:00",
-        "end_time": "2024-11-21T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "DALAS",
-        "meeting_type": "internal",
-        "contact_name": "Madelaine Curry"
-      },
-      {
-        "start_time": "2024-11-28T00:00:00",
-        "end_time": "2024-11-28T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "DALAS",
-        "meeting_type": "internal",
-        "contact_name": "Madelaine Curry"
-      },
-      {
-        "start_time": "2024-12-05T00:00:00",
-        "end_time": "2024-12-05T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "CPM",
-        "meeting_type": "internal",
-        "contact_name": "Priya Shajpal"
-      },
-      {
-        "start_time": "2024-12-12T00:00:00",
-        "end_time": "2024-12-12T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "DALAS",
-        "meeting_type": "internal",
-        "contact_name": "Madelaine Curry"
-      },
-      {
-        "start_time": "2024-12-19T00:00:00",
-        "end_time": "2024-12-19T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "DALAS",
-        "meeting_type": "internal",
-        "contact_name": "Madelaine Curry"
-      },
-      {
-        "start_time": "2024-12-26T00:00:00",
-        "end_time": "2024-12-26T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "DALAS",
-        "meeting_type": "internal",
-        "contact_name": "Madelaine Curry"
-      },
-      {
-        "start_time": "2025-01-09T00:00:00",
-        "end_time": "2025-01-09T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "DALAS",
-        "meeting_type": "internal",
-        "contact_name": "Madelaine Curry"
-      },
-      {
-        "start_time": "2025-01-16T00:00:00",
-        "end_time": "2025-01-16T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "DALAS",
-        "meeting_type": "internal",
-        "contact_name": "Madelaine Curry"
-      },
-      {
-        "start_time": "2025-01-23T00:00:00",
-        "end_time": "2025-01-23T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "DALAS",
-        "meeting_type": "internal",
-        "contact_name": "Madelaine Curry"
-      },
-      {
-        "start_time": "2025-01-30T00:00:00",
-        "end_time": "2025-01-30T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "DALAS",
-        "meeting_type": "internal",
-        "contact_name": "Madelaine Curry"
-      },
-      {
-        "start_time": "2025-01-08T00:00:00",
-        "end_time": "2025-01-08T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Ford",
+        "start_time": "2025-01-08T09:00:00",
+        "end_time": "2025-01-08T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "Ford Session",
         "meeting_type": "client",
         "contact_name": "Angus Kantolinna"
       },
       {
-        "start_time": "2025-01-15T00:00:00",
-        "end_time": "2025-01-15T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Ford",
+        "start_time": "2025-01-09T09:00:00",
+        "end_time": "2025-01-09T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "DALAS",
+        "meeting_type": "internal",
+        "contact_name": "Madelaine Curry"
+      },
+      {
+        "start_time": "2025-01-15T09:00:00",
+        "end_time": "2025-01-15T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "Ford Session",
         "meeting_type": "client",
         "contact_name": "Angus Kantolinna"
       },
       {
-        "start_time": "2025-01-22T00:00:00",
-        "end_time": "2025-01-22T23:59:59",
-        "duration_minutes": 1440,
-        "event_name": "Ford",
+        "start_time": "2025-01-16T09:00:00",
+        "end_time": "2025-01-16T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "DALAS",
+        "meeting_type": "internal",
+        "contact_name": "Madelaine Curry"
+      },
+      {
+        "start_time": "2025-01-22T09:00:00",
+        "end_time": "2025-01-22T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "Ford Session",
         "meeting_type": "client",
         "contact_name": "Angus Kantolinna"
+      },
+      {
+        "start_time": "2025-01-23T09:00:00",
+        "end_time": "2025-01-23T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "DALAS",
+        "meeting_type": "internal",
+        "contact_name": "Madelaine Curry"
+      },
+      {
+        "start_time": "2025-01-30T09:00:00",
+        "end_time": "2025-01-30T17:00:00",
+        "duration_minutes": 480,
+        "event_name": "DALAS",
+        "meeting_type": "internal",
+        "contact_name": "Madelaine Curry"
       },
       {
         "start_time": "2025-02-06T09:00:00",

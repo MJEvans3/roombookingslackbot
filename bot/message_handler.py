@@ -492,14 +492,19 @@ class MessageHandler:
             # Parse month from message
             month_str = message.replace('calendar view ', '').strip()
             
-            # Room abbreviations mapping
+            # Room abbreviations mapping with order
+            room_order = ["NEST", "TREEHOUSE", "LIGHTHOUSE", "HUMMINGBIRD", "RAVEN"]
             room_abbr = {
                 "NEST": "Nest",
                 "TREEHOUSE": "Tree",
                 "LIGHTHOUSE": "Lght",
-                "RAVEN": "Ravn",
-                "HUMMINGBIRD": "Hmng"
+                "HUMMINGBIRD": "Hmng",
+                "RAVEN": "Ravn"
             }
+
+            # Replace the sorted() calls with custom sorting based on room_order
+            def sort_by_room_order(room):
+                return room_order.index(room.room_id)
 
             month_names = {month.lower(): i for i, month in enumerate(calendar.month_name) if month}
             month_abbr = {month.lower(): i for i, month in enumerate(calendar.month_abbr) if month}
@@ -519,7 +524,7 @@ class MessageHandler:
             # First, create detailed bookings view
             all_bookings = []
             
-            for room in self.room_manager.rooms.values():  # Iterate through all rooms
+            for room in sorted(self.room_manager.rooms.values(), key=sort_by_room_order):  # Sort rooms by custom order
                 for booking in room.bookings:
                     booking_start = datetime.fromisoformat(booking['start_time'])
                     if booking_start.month == month_num and booking_start.year == current_year:
@@ -527,24 +532,38 @@ class MessageHandler:
                             'date': booking_start,
                             'start': booking_start,
                             'end': datetime.fromisoformat(booking['end_time']),
-                            'room': room_abbr[room.room_id],  # Use room abbreviation
+                            'room': room_abbr[room.room_id],
                             'event': booking['event_name'],
                             'type': booking['meeting_type'],
                             'contact': booking['contact_name']
                         })
 
-            # Sort bookings by date and time
-            all_bookings.sort(key=lambda x: (x['date'].date(), x['start'].time()))
+            # Sort bookings by date, room (maintaining custom order), and time
+            def get_room_order(booking):
+                room_name = booking['room']
+                for room_id, abbr in room_abbr.items():
+                    if abbr == room_name:
+                        return room_order.index(room_id)
+                return len(room_order)  # fallback for unknown rooms
+
+            all_bookings.sort(key=lambda x: (x['date'].date(), get_room_order(x), x['start'].time()))
 
             # Create response with detailed bookings
             response = [f"Detailed Bookings - {calendar.month_name[month_num]} {current_year}:"]
             current_date = None
+            current_room = None
             
             for booking in all_bookings:
                 booking_date = booking['date'].date()
                 if booking_date != current_date:
                     current_date = booking_date
+                    current_room = None
                     response.append(f"\n{booking_date.strftime('%B %d (%A)')}")
+                
+                if booking['room'] != current_room:
+                    if current_room is not None:  # Add space between rooms
+                        response.append("")
+                    current_room = booking['room']
                 
                 response.append(
                     f"• {booking['start'].strftime('%H:%M')}-{booking['end'].strftime('%H:%M')} - "
@@ -583,33 +602,40 @@ class MessageHandler:
                     # Get all bookings for this day
                     date = datetime(current_year, month_num, day)
                     day_bookings = []
-                    for room in self.room_manager.rooms.values():
+                    for room in sorted(self.room_manager.rooms.values(), key=sort_by_room_order):  # Sort rooms by custom order
+                        room_bookings = []
                         for booking in room.bookings:
                             booking_start = datetime.fromisoformat(booking['start_time'])
                             booking_end = datetime.fromisoformat(booking['end_time'])
                             if booking_start.date() == date.date():
-                                day_bookings.append({
+                                room_bookings.append({
                                     'start': booking_start,
                                     'end': booking_end,
                                     'room': room_abbr[room.room_id]
                                 })
-                    
-                    # Sort bookings by time
-                    day_bookings.sort(key=lambda x: x['start'])
+                        if room_bookings:  # Only add room bookings if they exist
+                            if day_bookings:  # Add spacing between rooms
+                                day_bookings.append(None)  # None represents a blank line
+                            day_bookings.extend(sorted(room_bookings, key=lambda x: x['start']))
                     
                     # Format day cell with asterisks
                     week_lines[0] += f"*{day}*".ljust(CELL_WIDTH)
                     
                     # Add each booking on its own line
-                    for i, booking in enumerate(day_bookings):
-                        booking_str = (f"{booking['start'].strftime('%H:%M')}-"
-                                     f"{booking['end'].strftime('%H:%M')} "
-                                     f"{booking['room']}")
-                        week_lines[i + 1] += booking_str.ljust(CELL_WIDTH)
-                        max_lines_used = max(max_lines_used, i + 2)
+                    line_idx = 1
+                    for booking in day_bookings:
+                        if booking is None:  # Add blank line between rooms
+                            week_lines[line_idx] += " " * CELL_WIDTH
+                        else:
+                            booking_str = (f"{booking['start'].strftime('%H:%M')}-"
+                                         f"{booking['end'].strftime('%H:%M')} "
+                                         f"{booking['room']}")
+                            week_lines[line_idx] += booking_str.ljust(CELL_WIDTH)
+                        line_idx += 1
+                        max_lines_used = max(max_lines_used, line_idx)
                     
                     # Fill remaining lines with spaces
-                    for i in range(len(day_bookings) + 1, 20):
+                    for i in range(line_idx, 20):
                         week_lines[i] += " " * CELL_WIDTH
                 
                 # Add non-empty lines to response

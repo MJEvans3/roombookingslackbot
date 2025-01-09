@@ -27,30 +27,44 @@ class SlackBot:
         try:
             auth_response = self.web_client.auth_test()
             logging.info(f"Bot connected as {auth_response['bot_id']} to workspace {auth_response['team']}")
+            
+            # Log the scopes we have
+            logging.info(f"Bot scopes: {auth_response.get('scope', '').split(',')}")
+            
         except Exception as e:
-            logging.error(f"Failed to authenticate with Slack: {e}")
+            logging.error(f"Failed to authenticate with Slack: {e}", exc_info=True)
             raise
 
     def process_message(self, client: SocketModeClient, req: SocketModeRequest):
         """Process incoming socket mode requests."""
+        logging.info(f"Received request type: {req.type}")
+        
         if req.type == "slash_commands":
             client.send_socket_mode_response(SocketModeResponse(envelope_id=req.envelope_id))
             command = req.payload
             
-            user_command = command["command"] + " " + command["text"].strip()  # Capture the user's command
+            # Log specific command information
+            logging.info(f"""
+Command Details:
+- User: {command.get('user_id')}
+- Channel: {command.get('channel_id')}
+- Command: {command.get('command')}
+- Text: {command.get('text')}
+- Team: {command.get('team_id')}
+""")
+            
+            user_command = command["command"] + " " + command["text"].strip()
             
             try:
                 response = self._handle_slash_command(command)
-                
-                # All responses are ephemeral (only visible to the user)
                 self.web_client.chat_postEphemeral(
                     channel=command["channel_id"],
                     user=command["user_id"],
-                    text=f"You typed: `{user_command}`\n\n{response}"  # Include the user's command
+                    text=f"You typed: `{user_command}`\n\n{response}"
                 )
                 
             except Exception as e:
-                logging.error(f"Error handling slash command: {e}")
+                logging.error(f"Error handling slash command: {e}", exc_info=True)
                 self.web_client.chat_postEphemeral(
                     channel=command["channel_id"],
                     user=command["user_id"],
